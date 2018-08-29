@@ -1,62 +1,71 @@
 'use strict';
 
-// load the things we need
-const LocalStrategy     = require('passport-local').Strategy;
+// load all the things we need
+const LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
-const User              = require('../app/models/user');
+const User            = require('../app/models/user');
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
 
-    //======================================
-    // passport session setup ===============
-    //======================================
-    // needed to serialize the user for the sessions
+    // =========================================================================
+    // passport session setup ==================================================
+    // =========================================================================
+    // required for persistent login sessions
+    // passport needs ability to serialize and unserialize users out of session
 
+    // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
         done(null, user.id);
     });
 
-    // deserialize the users
-
-    passport.serializeUser(function(id, done) {
+    // used to deserialize the user
+    passport.deserializeUser(function(id, done) {
         User.findById(id, function(err, user) {
             done(err, user);
         });
     });
 
-    //======================================
-    // LOCAL SIGNUP =========================
-    //======================================
+    // =========================================================================
+    // LOCAL SIGNUP ============================================================
+    // =========================================================================
+    // we are using named strategies since we have one for login and one for signup
+    // by default, if there was no name, it would just be called 'local'
 
     passport.use('local-signup', new LocalStrategy({
-        // by default, local strategy uses username and password, override with email
+        // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
         passwordField : 'password',
-        passReqToCallback : true // so whole request can be passed to callback
-    }));
+        passReqToCallback : true // allows us to pass back the entire request to the callback
+    },
+    function(req, email, password, done) {
 
-    function(req, email, password, done) { // callback with email and password from form
+        // asynchronous
+        // User.findOne wont fire unless data is sent back
+        process.nextTick(function() {
+
         // find a user whose email is the same as the forms email
-        // checking to see if user logging in already exists
-        User.findOne({ 'local.email' : email }, function(err, user) {
-            // if there are any errors, return them before anything else
+        // we are checking to see if the user trying to login already exists
+        User.findOne({ 'local.email' :  email }, function(err, user) {
+            // if there are any errors, return the error
             if (err)
                 return done(err);
 
-            // check to see if there is already a user with that email
+            // check to see if theres already a user with that email
             if (user) {
-                return done(null, false, req.flash('signupMessage', 'That email is already taken'));
+                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
             } else {
-                // if there is no user with that email create one
-                const newUser          = new User();
+
+                // if there is no user with that email
+                // create the user
+                var newUser            = new User();
 
                 // set the user's local credentials
                 newUser.local.email    = email;
                 newUser.local.password = newUser.generateHash(password);
 
-                // save the users
+                // save the user
                 newUser.save(function(err) {
                     if (err)
                         throw err;
@@ -65,5 +74,9 @@ module.exports = function(passport) {
             }
 
         });
-    },
+
+        });
+
+    }));
+
 };
