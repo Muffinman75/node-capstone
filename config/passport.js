@@ -59,12 +59,12 @@ module.exports = function(passport) {
 
                 // if there is no user with that email
                 // create the user
-                var newUser            = new User();
+                const newUser            = new User();
 
                 // set the user's local credentials
+                console.log(newUser);
                 newUser.local.email    = email;
                 newUser.local.password = newUser.generateHash(password);
-
                 // save the user
                 newUser.save(function(err) {
                     if (err)
@@ -78,9 +78,9 @@ module.exports = function(passport) {
         });
 
     }));
-        // ======================================================================
-    // LOCAL LOGIN =============================================================
-    // =========================================================================
+    // ==========================================
+    // LOCAL LOGIN ==============================
+    // ==========================================
     // we are using named strategies since we have one for login and one for signup
     // by default, if there was no name, it would just be called 'local'
 
