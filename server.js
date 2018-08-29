@@ -36,4 +36,4 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 require('./app/routes.js')(app, passport); // load the routes and pass in the app and configured passport
 
 app.listen(port);
-console.lpg('communicating through port ' + port);
+console.log('communicating through port ' + port);
