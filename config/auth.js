@@ -19,8 +19,8 @@ module.exports = {
     },
 
     'googleAuth' : {
-        'clientID'      : 'your-secret-clientID-here',
-        'clientSecret'  : 'your-client-secret-here',
+        'clientID'      : '867787338338-rav4adiqf9g1d5gg7ui7bbuslt5unkjk.apps.googleusercontent.com',
+        'clientSecret'  : 'kQiLXprtrP3u4b8lRy1QlN26',
         'callbackURL'   : 'https://salty-basin-64289.herokuapp.com/auth/google/callback'
     }
 
