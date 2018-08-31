@@ -31,7 +31,10 @@
                         <strong>password</strong>: <%= user.local.password %>
                     </p>
 
-                    <a href="/unlink/local" class="btn btn-default">Unlink</a>
+                    <a href="/unlink/local" class="btn btn-default">Unlink account</a>
+                    <a href="/leaderboard">Check Leaderboard</a>
+                    <a href="/predictions">Make Predictions</a>
+                    <a href="/results">Check Results</a>
                 <% } else { %>
                     <a href="/connect/local" class="btn btn-default">Connect Local</a>
                 <% } %>
@@ -40,12 +43,12 @@
         </div>
 
         <!-- FACEBOOK INFORMATION -->
-        <div class="col-sm-6">
+        <!-- <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
 
-                <!-- check if the user has this token (is the user authenticated with this social account) -->
-                <% if (user.facebook.token) { %>
+                <! check if the user has this token (is the user authenticated with this social account) -->
+                <!-- <% if (user.facebook.token) { %>
                     <p>
                         <strong>id</strong>: <%= user.facebook.id %><br>
                         <strong>token</strong>: <%= user.facebook.token %><br>
@@ -59,18 +62,18 @@
                 <% } %>
 
             </div>
-        </div>
+        </div> -->
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
 
-        <!-- TWITTER INFORMATION -->
-        <div class="col-sm-6">
+        <! TWITTER INFORMATION -->
+        <!--<div class="col-sm-6">
             <div class="well">
                 <h3 class="text-info"><span class="fa fa-twitter"></span> Twitter</h3>
 
-                <!-- check if the user has this token (is the user authenticated with this social account) -->
-                <% if (user.twitter.token) { %>
+                <! check if the user has this token (is the user authenticated with this social account) -->
+                <!--<% if (user.twitter.token) { %>
                     <p>
                         <strong>id</strong>: <%= user.twitter.id %><br>
                         <strong>token</strong>: <%= user.twitter.token %><br>
@@ -86,13 +89,13 @@
             </div>
         </div>
 
-        <!-- GOOGLE INFORMATION -->
-        <div class="col-sm-6">
+        <! GOOGLE INFORMATION -->
+        <!--<div class="col-sm-6">
             <div class="well">
                 <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+</h3>
 
-                <!-- check if the user has this token (is the user authenticated with this social account) -->
-                <% if (user.google.token) { %>
+                <!- check if the user has this token (is the user authenticated with this social account) -->
+                <!--<% if (user.google.token) { %>
                     <p>
                         <strong>id</strong>: <%= user.google.id %><br>
                         <strong>token</strong>: <%= user.google.token %><br>
@@ -107,7 +110,7 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
 
 </div>
 </body>

@@ -1,0 +1,9 @@
+language: node_js
+node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: sZzQAjEylAirjxtw2cFtH4/5R2OEaJ7lCjzq9G0s4uKnpOVMr9Cx/eiSzYVWzMoFr95clJOU8BotWniPMjoY8s0vmJesbARirsdG+De5TICjjbFeq6N5HGteAhmXCP7HHJh9+793S+ZTd2asegXBJgmigHYU/vA8QgAI50nVTSu1qn7ulZ15kBSOJ2wpkFew/oN57NMqt8jIcWleKIAc7nTw6z8WEV6MdroRJbR+Kh9VTYthfnN63Z0j0kS70gZ50oYRrjtoaJCIppDzJBOCFBfhllEbicgjTqB+tkhYs4PJ9Ri4oIbMdeeZD8WV0QbQ15YShXs+/Lv7lyJRE5eq4qdT1gCnCspOrKoHtT3ocPTtogfsvlNsTbgRGZ5ZqnGmxeJUsR6H0ZSl10mxY0VwfQPVzIdrvk7g+O0wHS0977p5fmwDJn0wlFjdQbH47XlgYtn/tyus+zKldu1KWr1BlSumGkVBSFP1xz3ca2D7+qdMkJYyUpqN04x8sU6QeG/Hz/xERQYoWRI4nkX+n1Sv0VCkEQRtU17RXymN7t9gNH1rL9+eoCivMWREXup9/hfLHZgs75zz4B25Rw99N/bV3qxuP9g4Py3RXqnUU9Ay7GC4mRRq6wBnwEtgEah5f8YdpRUZQ7jZfxfSXGyaPgN9z7CV6iXB07KQXn7qG4CWy4s=
+  app: salty-basin-64289
+  on:
+    repo: Muffinman75/node-capstone

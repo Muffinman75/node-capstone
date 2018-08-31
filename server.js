@@ -23,7 +23,7 @@ require('./config/passport')(passport); // pass passport for configuration
 app.use(morgan('dev')); // log each request to the console
 app.use(cookieParser()); // read cookies (needed for oauth)
 app.use(bodyParser()); // get info from html forms
-
+app.use(express.static('public'));
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
@@ -33,7 +33,8 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistant login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-require('./app/routes.js')(app, passport); // load the routes and pass in the app and configured passport
+require('./app/auth-routes.js')(app, passport); // load the routes and pass in the app and configured passport
+require('./app/game-routes.js')(app);
 
 app.listen(port);
 console.log('communicating through port ' + port);
