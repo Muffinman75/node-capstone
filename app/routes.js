@@ -60,14 +60,14 @@ module.exports = function(app, passport) {
     // TWITTER ROUTES ======================
     // =====================================
     // route for twitter authentication and login
-    app.get('/auth/twitter', passport.authenticate('twitter'));
-
-    // handle the callback after twitter has authenticated the user
-    app.get('/auth/twitter/callback',
-        passport.authenticate('twitter', {
-            successRedirect : '/profile',
-            failureRedirect : '/'
-        }));
+    // app.get('/auth/twitter', passport.authenticate('twitter'));
+    //
+    // // handle the callback after twitter has authenticated the user
+    // app.get('/auth/twitter/callback',
+    //     passport.authenticate('twitter', {
+    //         successRedirect : '/profile',
+    //         failureRedirect : '/'
+    //     }));
 
     // =====================================
     // GOOGLE ROUTES =======================
@@ -119,14 +119,14 @@ module.exports = function(app, passport) {
     // twitter --------------------------------
 
     // send to twitter to do the authentication
-    app.get('/connect/twitter', passport.authorize('twitter', { scope : 'email'}));
-
-    // handle the callback after twitter has authorized the user
-    app.get('/connect/twitter/callback',
-        passport.authorize('twitter', {
-            successRedirect : '/profile',
-            failureRedirect : '/'
-        }));
+    // app.get('/connect/twitter', passport.authorize('twitter', { scope : 'email'}));
+    //
+    // // handle the callback after twitter has authorized the user
+    // app.get('/connect/twitter/callback',
+    //     passport.authorize('twitter', {
+    //         successRedirect : '/profile',
+    //         failureRedirect : '/'
+    //     }));
 
     // google ---------------------------------
 
@@ -167,13 +167,13 @@ module.exports = function(app, passport) {
     });
 
     // twitter --------------------------------
-    app.get('/unlink/twitter', function(req, res) {
-        const user           = req.user;
-        user.twitter.token = undefined;
-        user.save(function(err) {
-           res.redirect('/profile');
-        });
-    });
+    // app.get('/unlink/twitter', function(req, res) {
+    //     const user           = req.user;
+    //     user.twitter.token = undefined;
+    //     user.save(function(err) {
+    //        res.redirect('/profile');
+    //     });
+    // });
 
     // google ---------------------------------
     app.get('/unlink/google', function(req, res) {
