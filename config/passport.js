@@ -3,7 +3,7 @@
 // load all the things we need
 const LocalStrategy     = require('passport-local').Strategy;
 const FacebookStrategy  = require('passport-facebook').Strategy;
-const TwitterStrategy   = require('passport-twitter').Strategy;
+// const TwitterStrategy   = require('passport-twitter').Strategy;
 const GoogleStrategy    = require('passport-google-oauth').Strategy;
 // load up the user model
 const User              = require('../app/models/user');
