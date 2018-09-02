@@ -1,7 +1,7 @@
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 80%;
 }
 
 td, th {
@@ -12,4 +12,8 @@ td, th {
 
 tr:nth-child(even) {
     background-color: #dddddd;
+}
+
+input {
+    width: 20%;
 }
