@@ -8,7 +8,8 @@ const userSchema = mongoose.Schema({
 
     local              : {
         email          : String,
-        password       : String
+        password       : String,
+        points         : Number
     },
     facebook           : {
         id             : String,
