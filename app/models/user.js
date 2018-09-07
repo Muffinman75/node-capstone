@@ -10,7 +10,8 @@ const userSchema = mongoose.Schema({
     local              : {
         email          : String,
         password       : String,
-        prediction     : { type: mongoose.Schema.Types.ObjectId, ref : 'Prediction'}
+        prediction     : { type: mongoose.Schema.Types.ObjectId, ref : 'Prediction'},
+        points         : Number
 
     },
     facebook           : {

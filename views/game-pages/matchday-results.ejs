@@ -16,76 +16,19 @@
                 <th>Away</th>
                 <th>Score</th>
             </tr>
+
+            <% for (var i = 0; i < data.matches.length; i++) { %>
+
             <tr>
-                <th><%- '${data.matches[0].hometeam.name}' %></th>
-                <th><%- '${data.matches[0].score.fulltime.hometeam}' %></th>
-                <th><%- '${data.matches[0].score.winner}' %></th>
-                <th><%- '${data.matches[0].awayteam.name}' %></th>
-                <th><%- '${data.matches[0].score.fulltime.awayteam}' %></th>
+                <td><%= data.matches[i].homeTeam.name  %></td>
+                <td><%= data.matches[i].score.fullTime.homeTeam %></td>
+                <td><%= data.matches[i].score.winner %></td>
+                <td><%= data.matches[i].awayTeam.name  %></td>
+                <td><%= data.matches[i].score.fullTime.awayTeam %></td>
             </tr>
-            <tr>
-                <th><%- '${data.matches[1].hometeam.name}' %></th>
-                <th><%- '${data.matches[1].score.fulltime.hometeam}' %></th>
-                <th><%- '${data.matches[1].score.winner}' %></th>
-                <th><%- '${data.matches[1].awayteam.name}' %></th>
-                <th><%- '${data.matches[1].score.fulltime.awayteam}' %></th>
-            </tr>
-            <tr>
-                <th><%- '${data.matches[2].hometeam.name}' %></th>
-                <th><%- '${data.matches[2].score.fulltime.hometeam}' %></th>
-                <th><%- '${data.matches[2].score.winner}' %></th>
-                <th><%- '${data.matches[2].awayteam.name}' %></th>
-                <th><%- '${data.matches[2].score.fulltime.awayteam}' %></th>
-            </tr>
-            <tr>
-                <th><%- '${data.matches[3].hometeam.name}' %></th>
-                <th><%- '${data.matches[3].score.fulltime.hometeam}' %></th>
-                <th><%- '${data.matches[3].score.winner}' %></th>
-                <th><%- '${data.matches[3].awayteam.name}' %></th>
-                <th><%- '${data.matches[3].score.fulltime.awayteam}' %></th>
-            </tr>
-            <tr>
-                <th><%- '${data.matches[4].hometeam.name}' %></th>
-                <th><%- '${data.matches[4].score.fulltime.hometeam}' %></th>
-                <th><%- '${data.matches[4].score.winner}' %></th>
-                <th><%- '${data.matches[4].awayteam.name}' %></th>
-                <th><%- '${data.matches[4].score.fulltime.awayteam}' %></th>
-            </tr>
-            <tr>
-                <th><%- '${data.matches[5].hometeam.name}' %></th>
-                <th><%- '${data.matches[5].score.fulltime.hometeam}' %></th>
-                <th><%- '${data.matches[5].score.winner}' %></th>
-                <th><%- '${data.matches[5].awayteam.name}' %></th>
-                <th><%- '${data.matches[5].score.fulltime.awayteam}' %></th>
-            </tr>
-            <tr>
-                <th><%- '${data.matches[6].hometeam.name}' %></th>
-                <th><%- '${data.matches[6].score.fulltime.hometeam}' %></th>
-                <th><%- '${data.matches[6].score.winner}' %></th>
-                <th><%- '${data.matches[6].awayteam.name}' %></th>
-                <th><%- '${data.matches[6].score.fulltime.awayteam}' %></th>
-            </tr>
-            <tr>
-                <th><%- '${data.matches[7].hometeam.name}' %></th>
-                <th><%- '${data.matches[7].score.fulltime.hometeam}' %></th>
-                <th><%- '${data.matches[7].score.winner}' %></th>
-                <th><%- '${data.matches[7].awayteam.name}' %></th>
-                <th><%- '${data.matches[7].score.fulltime.awayteam}' %></th>
-            </tr>
-            <tr>
-                <th><%- '${data.matches[8].hometeam.name}' %></th>
-                <th><%- '${data.matches[8].score.fulltime.hometeam}' %></th>
-                <th><%- '${data.matches[8].score.winner}' %></th>
-                <th><%- '${data.matches[8].awayteam.name}' %></th>
-                <th><%- '${data.matches[8].score.fulltime.awayteam}' %></th>
-            </tr>
-            <tr>
-                <th><%- '${data.matches[9].hometeam.name}' %></th>
-                <th><%- '${data.matches[9].score.fulltime.hometeam}' %></th>
-                <th><%- '${data.matches[9].score.winner}' %></th>
-                <th><%- '${data.matches[9].awayteam.name}' %></th>
-                <th><%- '${data.matches[9].score.fulltime.awayteam}' %></th>
-            </tr>
+
+            <% } %>
+
         </table>
 
         <a href="/leaderboard">Check Leaderboard</a>
