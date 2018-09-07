@@ -3,13 +3,15 @@
 const mongoose = require('mongoose');
 const bcrypt   = require('bcrypt-nodejs');
 
+const Prediction = require('./game');
 // define the schema for our user model
 const userSchema = mongoose.Schema({
 
     local              : {
         email          : String,
         password       : String,
-        points         : Number
+        prediction     : { type: mongoose.Schema.Types.ObjectId, ref : 'Prediction'}
+
     },
     facebook           : {
         id             : String,

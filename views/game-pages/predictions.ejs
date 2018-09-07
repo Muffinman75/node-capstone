@@ -6,24 +6,73 @@
         <% include ../partials/head %>
     </head>
     <body>
-        <h2>PREDICTIONS</h2>
-
-        <table style="width:100%">
-            <tr>
-                <th>Home</th>
-                <th>Score</th>
-                <th>Away</th>
-                <th>Score</th>
-            </tr>
-
-            <% include ../partials/prediction-fixtures%>
-
-        </table>
+        <form method="post" action="/predictions">
+            <fieldset>
+                <legend><h2>PREDICTIONS</h2></legend>
+                <table>
+                    <tr>
+                        <th>Home Win</th>
+                        <th>Draw</th>
+                        <th>Away Win</th>
+                    </tr>
+                        <td><label><input value="home-win" type="radio" name="fixture_1" required>Tottenham Hotspur</label></td>
+                        <td><input value="draw" type="radio" name="fixture_1"></td>
+                        <td><label><input value="away-win"type="radio" name="fixture_1">Liverpool</label></td>
+                    </tr>
+                    </tr>
+                        <td><label><input value="home-win" type="radio" name="fixture_2" required>Bournemouth</label></td>
+                        <td><input value="draw" type="radio" name="fixture_2"></td>
+                        <td><label><input value="away-win" type="radio" name="fixture_2">Leicester</label></td>
+                    </tr>
+                    </tr>
+                        <td><label><input value="home-win" type="radio" name="fixture_3" required>Chelsea</label></td>
+                        <td><input value="draw" type="radio" name="fixture_3"></td>
+                        <td><label><input value="away-win" type="radio" name="fixture_3">Cardiff</label></td>
+                    </tr>
+                    </tr>
+                        <td><label><input value="home-win" type="radio" name="fixture_4" required>Huddersfield</label></td>
+                        <td><input value="draw" type="radio" name="fixture_4"></td>
+                        <td><label><input value="away-win" type="radio" name="fixture_4">Crystal Palace</label></td>
+                    </tr>
+                    </tr>
+                        <td><label><input value="home-win" type="radio" name="fixture_5" required>Man. City</label></td>
+                        <td><input value="draw" type="radio" name="fixture_5"></td>
+                        <td><label><input value="away-win" type="radio" name="fixture_5">Fulham</label></td>
+                    </tr>
+                    </tr>
+                        <td><label><input value="home-win" type="radio" name="fixture_6" required>Newcastle Utd</label></td>
+                        <td><input value="draw" type="radio" name="fixture_6"></td>
+                        <td><label><input value="away-win" type="radio" name="fixture_6">Arsenal</label></td>
+                    </tr>
+                    </tr>
+                        <td><label><input value="home-win" type="radio" name="fixture_7" required>Watford</label></td>
+                        <td><input value="draw" type="radio" name="fixture_7"></td>
+                        <td><label><input value="away-win" type="radio" name="fixture_7">Man. Utd</label></td>
+                    </tr>
+                    </tr>
+                        <td><label><input value="home-win" type="radio" name="fixture_8" required>Wolves</label></td>
+                        <td><input value="draw" type="radio" name="fixture_8"></td>
+                        <td><label><input value="away-win" type="radio" name="fixture_8">Burnley</label></td>
+                    </tr>
+                    </tr>
+                        <td><label><input value="home-win" type="radio" name="fixture_9" required>Everton</label></td>
+                        <td><input value="draw" type="radio" name="fixture_9"></td>
+                        <td><label><input value="away-win" type="radio" name="fixture_9">West Ham</label></td>
+                    </tr>
+                    </tr>
+                        <td><label><input value="home-win" type="radio" name="fixture_10" required>Southampton</label></td>
+                        <td><input value="draw" type="radio" name="fixture_10"></td>
+                        <td><label><input value="away-win" type="radio" name="fixture_10">Brighton & Hove Albion</label></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <button type="submit">Submit Predictions</button>
+        </form>
 
         <a href="/leaderboard">Check Leaderboard</a>
         <a href="/results">Check Results</a>
         <br>
         <br>
-        <button type="submit">Submit Predictions</button>
+
     </body>
 </html>

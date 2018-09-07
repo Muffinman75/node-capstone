@@ -8,76 +8,88 @@
     <body>
         <h2>RESULTS</h2>
 
-        <table style="width:100%">
+        <table style="width:100%" method="get" action="/matchday-results">
             <tr>
                 <th>Home</th>
                 <th>Score</th>
+                <th>Result</th>
                 <th>Away</th>
                 <th>Score</th>
             </tr>
             <tr>
-                <th>Wolves</th>
-                <th>3</th>
-                <th>Man City</th>
-                <th>0</th>
+                <th><%- '${data.matches[0].hometeam.name}' %></th>
+                <th><%- '${data.matches[0].score.fulltime.hometeam}' %></th>
+                <th><%- '${data.matches[0].score.winner}' %></th>
+                <th><%- '${data.matches[0].awayteam.name}' %></th>
+                <th><%- '${data.matches[0].score.fulltime.awayteam}' %></th>
             </tr>
             <tr>
-                <th>Goons</th>
-                <th>0</th>
-                <th>West Ham</th>
-                <th>0</th>
+                <th><%- '${data.matches[1].hometeam.name}' %></th>
+                <th><%- '${data.matches[1].score.fulltime.hometeam}' %></th>
+                <th><%- '${data.matches[1].score.winner}' %></th>
+                <th><%- '${data.matches[1].awayteam.name}' %></th>
+                <th><%- '${data.matches[1].score.fulltime.awayteam}' %></th>
             </tr>
             <tr>
-                <th>Bournemouth</th>
-                <th>0</th>
-                <th>Everton</th>
-                <th>2</th>
+                <th><%- '${data.matches[2].hometeam.name}' %></th>
+                <th><%- '${data.matches[2].score.fulltime.hometeam}' %></th>
+                <th><%- '${data.matches[2].score.winner}' %></th>
+                <th><%- '${data.matches[2].awayteam.name}' %></th>
+                <th><%- '${data.matches[2].score.fulltime.awayteam}' %></th>
             </tr>
             <tr>
-                <th>Huddersfield</th>
-                <th>0</th>
-                <th>Cardiff city</th>
-                <th>2</th>
+                <th><%- '${data.matches[3].hometeam.name}' %></th>
+                <th><%- '${data.matches[3].score.fulltime.hometeam}' %></th>
+                <th><%- '${data.matches[3].score.winner}' %></th>
+                <th><%- '${data.matches[3].awayteam.name}' %></th>
+                <th><%- '${data.matches[3].score.fulltime.awayteam}' %></th>
             </tr>
             <tr>
-                <th>Southampton</th>
-                <th>2</th>
-                <th>Leicester</th>
-                <th>4</th>
+                <th><%- '${data.matches[4].hometeam.name}' %></th>
+                <th><%- '${data.matches[4].score.fulltime.hometeam}' %></th>
+                <th><%- '${data.matches[4].score.winner}' %></th>
+                <th><%- '${data.matches[4].awayteam.name}' %></th>
+                <th><%- '${data.matches[4].score.fulltime.awayteam}' %></th>
             </tr>
             <tr>
-                <th>Liverpool</th>
-                <th>3</th>
-                <th>Brighton</th>
-                <th>1</th>
+                <th><%- '${data.matches[5].hometeam.name}' %></th>
+                <th><%- '${data.matches[5].score.fulltime.hometeam}' %></th>
+                <th><%- '${data.matches[5].score.winner}' %></th>
+                <th><%- '${data.matches[5].awayteam.name}' %></th>
+                <th><%- '${data.matches[5].score.fulltime.awayteam}' %></th>
             </tr>
             <tr>
-                <th>Watford</th>
-                <th>3</th>
-                <th>Crystal Palace</th>
-                <th>1</th>
+                <th><%- '${data.matches[6].hometeam.name}' %></th>
+                <th><%- '${data.matches[6].score.fulltime.hometeam}' %></th>
+                <th><%- '${data.matches[6].score.winner}' %></th>
+                <th><%- '${data.matches[6].awayteam.name}' %></th>
+                <th><%- '${data.matches[6].score.fulltime.awayteam}' %></th>
             </tr>
             <tr>
-                <th>Fulham</th>
-                <th>2</th>
-                <th>Burnley</th>
-                <th>1</th>
+                <th><%- '${data.matches[7].hometeam.name}' %></th>
+                <th><%- '${data.matches[7].score.fulltime.hometeam}' %></th>
+                <th><%- '${data.matches[7].score.winner}' %></th>
+                <th><%- '${data.matches[7].awayteam.name}' %></th>
+                <th><%- '${data.matches[7].score.fulltime.awayteam}' %></th>
             </tr>
             <tr>
-                <th>Newcastle</th>
-                <th>3</th>
-                <th>Chelsea</th>
-                <th>0</th>
+                <th><%- '${data.matches[8].hometeam.name}' %></th>
+                <th><%- '${data.matches[8].score.fulltime.hometeam}' %></th>
+                <th><%- '${data.matches[8].score.winner}' %></th>
+                <th><%- '${data.matches[8].awayteam.name}' %></th>
+                <th><%- '${data.matches[8].score.fulltime.awayteam}' %></th>
             </tr>
             <tr>
-                <th>Man. Utd</th>
-                <th>0</th>
-                <th>Tottenham</th>
-                <th>3</th>
+                <th><%- '${data.matches[9].hometeam.name}' %></th>
+                <th><%- '${data.matches[9].score.fulltime.hometeam}' %></th>
+                <th><%- '${data.matches[9].score.winner}' %></th>
+                <th><%- '${data.matches[9].awayteam.name}' %></th>
+                <th><%- '${data.matches[9].score.fulltime.awayteam}' %></th>
             </tr>
         </table>
 
         <a href="/leaderboard">Check Leaderboard</a>
         <a href="/predictions">Make Predictions</a>
+        <a href="/update-predictions">Change Predictions</a>
     </body>
 </html>
