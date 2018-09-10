@@ -32,32 +32,44 @@ module.exports = function(router) {
             }
             // get the matchDay from the API
             const matchday = data.matches[0].season.currentMatchday;
+            let numberofPredictions = 0;
+            let completedPredictions = 0;
             // go grab all Predictions for this matchDay
-            Predictions.find({ matchday : matchday })
-            console.log('predictions calc:', predictions)
-            // loop through all predictions
-            for (let i = 0; i < Predictions.length; i++) {
-                for (let j = 0; j < results.length; j++) {
-                    if (data.matches[j].score.winner == Predictions.fixtures[i].homeTeam && Predictions.fixtures[i].prediction == 'HOME_TEAM') {
-                        Predictions.fixtures[i].winner = matches[j].winner;
-                        user.points++;
-                        Predictions.fixtures[i].result = 1;
-                        Predictions.save();
+            Predictions.find({ matchday : matchday },function(err,predictions){
+                //console.log('predictions calc:', predictions)
+                // loop through all predictions
+                numberofPredictions = predictions.length;
+                for (let i = 0; i < predictions.length; i++) {
+                    for (let j = 0; j < data.matches.length; j++) {
+                        if (data.matches[j].matchday == matchday) {
+                            fixture = search(data.matches[j].homeTeam.name,data.matches[j].awayTeam.name,predictions[i].fixtures);
+                            if (data.matches[j].score.winner == predictions[i].fixtures[fixture].prediction) {
+                                predictions[i].fixtures[fixture].winner = data.matches[j].score.winner; // HOME_TEAM, AWAY_TEAM, DRAW
+                                predictions[i].fixtures[fixture].result = 1;
+                                predictions[i].save();
+                            }
+                        }
                     }
-                    if (data.matches[j].score.winner && Predictions.fixtures[i].prediction == 'DRAW') {
-                        Predictions.fixtures[i].winner = matches[j].winner;
-                        user.points++;
-                        Predictions.fixtures[i].result = 1;
-                        Predictions.save();
-                    }
-                    if (data.matches[j].score.winner && Predictions.fixtures[i].awayTeam && Predictions.fixtures[i].prediction == 'AWAY_TEAM') {
-                        Predictions.fixtures[i].winner = matches[j].winner;
-                        user.points++;
-                        Predictions.fixtures[i].result = 1;
-                        Predictions.save();
+                    checkComplete();
+                }
+            });
+
+            function search(homeTeam, awayTeam, myArray){
+                for (var i=0; i < myArray.length; i++) {
+                    if (myArray[i].home_team === homeTeam && myArray[i].away_team === awayTeam) {
+                        return i;
                     }
                 }
             }
+
+            function checkComplete(){
+                completedPredictions++;
+                if(completedPredictions == numberofPredictions){
+                    //res.send(200);
+                    res.redirect('/updatePoints');
+                }
+            }
+
         // loop through all results. if the home team of the results & the Predictions match, go into scoring mode
         // if(data.matches[j].winner==prediction.fixtures[i].homeTeam && prediction.fixtures[i].prediction == "HOME")
         // then check away, then check draw, the result of each if is prediction.fixtures[i].result = 1;
@@ -72,13 +84,21 @@ module.exports = function(router) {
 
         */
     router.get('/updatePoints', function(req, res) {
-        for (let i = 0; i < users.length; i++) {
+        /*for (let i = 0; i < users.length; i++) {
             users[i].find({ user_id : prediction });
             for (let j = 0; j < Predictions.length; j++) {
 
             }
 
-        }
+        }*/
+        let userIds = [];
+        user.find({}).exec()
+            .then(function(users){
+                users.forEach(function(user){
+                    userIds.push(user._id);
+                });
+                //return Predictions.find({user_id:{$in:userIds}})
+            });
     });
     // =========================
     // LEADERBOARD PAGE
