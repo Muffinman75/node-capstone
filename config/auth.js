@@ -13,8 +13,8 @@ module.exports = {
     },
 
     'twitterAuth' : {
-        'consumerKey'       : 'your-consumer-key-here',
-        'consumerSecret'    : 'your-client-secret-here',
+        'consumerKey'       : 'asoferHkRjvSmH3vltAxjn6IN',
+        'consumerSecret'    : 'VyWemgMRIAzqXSnFxSKhZmXmjKZvaBJHNmFmWByJC6Lj4wr76T',
         'callbackURL'       : 'https://salty-basin-64289.herokuapp.com/auth/twitter/callback'
     },
 

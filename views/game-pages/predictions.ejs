@@ -16,7 +16,7 @@
                         <th>Away Win</th>
                     </tr>
 
-                    <% for (var i = 0; i < data.matches.length; i++) { %>
+                    <% for (let i = 0; i < data.matches.length; i++) { %>
 
                     <tr>
                         <td><label><input value="HOME_WIN" type="radio" name="fixture_<%=i+1%>" required><%= data.matches[i].homeTeam.name  %></label></td>

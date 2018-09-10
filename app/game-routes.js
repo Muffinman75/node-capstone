@@ -1,37 +1,20 @@
-const express        = require('express');
-const requestPromise = require('request-promise');
-const mongoose       = require('mongoose');
-const cron           = require('node-cron');
-const parser         = require('body-parser');
+const express         = require('express');
+const requestPromise  = require('request-promise');
+const mongoose        = require('mongoose');
+const parser          = require('body-parser');
 
-const router         = express.Router();
+const router          = express.Router();
 
-const user           = require('../app/models/user');
-const { Prediction } = require('../app/models/game');
-const configAuth     = require('../config/auth');
-
-
-// requestPromise({
-//     'method'  : 'GET',
-//     'uri'     : 'https://football-data.org/v2/competitions/PL/matches',
-//     'qs'      : {
-//         'matchday' : `${matchday}`
-//     },
-//     'json'    : true,
-//     'headers' : {
-//         'X-Auth-Token' : configAuth.footballToken
-//     },
-//     'rejectUnauthorized': false
-// })
-// .then(console.log);
+const user            = require('../app/models/user');
+const { Results }     = require('../app/models/results');
+const { Predictions } = require('../app/models/prediction');
+const configAuth      = require('../config/auth');
 
 
-module.exports = function(router, passport) {
+module.exports = function(router) {
 
-    // =========================
-    // LEADERBOARD PAGE
-    // =========================
-    router.get('/leaderboard', function(req, res) {
+    router.get('/checkPredictions', function(req,res) {
+        // go out to the API and get the current state of things
         requestPromise({
             'method'  : 'GET',
             'uri'     : 'https://football-data.org/v2/competitions/PL/matches',
@@ -47,31 +30,71 @@ module.exports = function(router, passport) {
                 console.error(message);
                 return res.status(404).send(message);
             }
-            const matchday = data.matches[0].season.currentMatchday - 1;
-            requestPromise({
-                'method'  : 'GET',
-                'uri'     : 'https://football-data.org/v2/competitions/PL/matches',
-                'qs'      : {
-                    'matchday' : `${matchday}`
-                },
-                'json'    : true,
-                'headers' : {
-                    'X-Auth-Token' : configAuth.footballToken
-                },
-                'rejectUnauthorized': false
-            })
-            .then(data => {
-                for (let i = 0; i < prediction.length; i++) {
-                    if (data.matches[i].score.winner === prediction.fixture_1) {
-                        user.local.points++;
+            // get the matchDay from the API
+            const matchday = data.matches[0].season.currentMatchday;
+            // go grab all Predictions for this matchDay
+            Predictions.find({ matchday : matchday })
+            console.log('predictions calc:', predictions)
+            // loop through all predictions
+            for (let i = 0; i < Predictions.length; i++) {
+                for (let j = 0; j < results.length; j++) {
+                    if (data.matches[j].score.winner == Predictions.fixtures[i].homeTeam && Predictions.fixtures[i].prediction == 'HOME_TEAM') {
+                        Predictions.fixtures[i].winner = matches[j].winner;
+                        user.points++;
+                        Predictions.fixtures[i].result = 1;
+                        Predictions.save();
+                    }
+                    if (data.matches[j].score.winner && Predictions.fixtures[i].prediction == 'DRAW') {
+                        Predictions.fixtures[i].winner = matches[j].winner;
+                        user.points++;
+                        Predictions.fixtures[i].result = 1;
+                        Predictions.save();
+                    }
+                    if (data.matches[j].score.winner && Predictions.fixtures[i].awayTeam && Predictions.fixtures[i].prediction == 'AWAY_TEAM') {
+                        Predictions.fixtures[i].winner = matches[j].winner;
+                        user.points++;
+                        Predictions.fixtures[i].result = 1;
+                        Predictions.save();
                     }
                 }
-            })
-            .catch(err => res.status(500).json({ message : 'Gone Pete Tong' }));
+            }
+        // loop through all results. if the home team of the results & the Predictions match, go into scoring mode
+        // if(data.matches[j].winner==prediction.fixtures[i].homeTeam && prediction.fixtures[i].prediction == "HOME")
+        // then check away, then check draw, the result of each if is prediction.fixtures[i].result = 1;
+        // prediction.fixtures[i].winner = matches[j].winner;
+        // prediction.save();
+        // updatePoints
         });
-        console.log(matchday);
-        res.render('game-pages/leaderboard.ejs'); // loads leaderboard.ejs file
     });
+    // updatePoints
+    /*
+        this route will go and get all users and loop through them. It will then go get all of the predictions for a given user. Do a sum of each prediction.fixtures result property. Once you have a total. user[i].points = total; user[i].save();
+
+        */
+    router.get('/updatePoints', function(req, res) {
+        for (let i = 0; i < users.length; i++) {
+            users[i].find({ user_id : prediction });
+            for (let j = 0; j < Predictions.length; j++) {
+
+            }
+
+        }
+    });
+    // =========================
+    // LEADERBOARD PAGE
+    // =========================
+    router.get('/leaderboard', function(req, res) {
+        user.find({}).sort({points : 'desc'})
+        .then(data => {
+            console.log('leaderboard:', data);
+            res.render('game-pages/leaderboard', { data : data });
+        });
+    });
+    //     /*
+    //         go get all Users, sort them by points (maybe with a limit of X)
+    //
+    //     */
+
     // =========================
     // PREDICTIONS PAGE
     // =========================
@@ -114,11 +137,16 @@ module.exports = function(router, passport) {
     });
     router.post('/predictions', function(req, res) {
         console.log(req.body);
-        Prediction.create(req.body);
+        for (let i = 0; i < 10; i++) {
+            Predictions.create({
+                prediction : req.body.fixture_[i + 1]
+            });
+        }
+        console.log('Predictions:', Prediction);
         res.render('game-pages/predictions-posted.ejs');
     });
     router.put('/predictions', function(req, res) {
-        res.render('game-pages/update-predictions');
+        res.render('game-pages/update-predictions.ejs');
     });
     // =========================
     // RESULTS PAGE
@@ -161,4 +189,6 @@ module.exports = function(router, passport) {
         });
          // loads results.ejs file
     });
+
+
 }

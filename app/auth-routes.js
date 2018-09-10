@@ -64,14 +64,14 @@ module.exports = function(router, passport) {
     // TWITTER ROUTES ======================
     // =====================================
     // route for twitter authentication and login
-    // router.get('/auth/twitter', passport.authenticate('twitter'));
-    //
-    // // handle the callback after twitter has authenticated the user
-    // router.get('/auth/twitter/callback',
-    //     passport.authenticate('twitter', {
-    //         successRedirect : '/profile',
-    //         failureRedirect : '/'
-    //     }));
+    router.get('/auth/twitter', passport.authenticate('twitter'));
+
+    // handle the callback after twitter has authenticated the user
+    router.get('/auth/twitter/callback',
+        passport.authenticate('twitter', {
+            successRedirect : '/profile',
+            failureRedirect : '/'
+        }));
 
     // =====================================
     // GOOGLE ROUTES =======================
