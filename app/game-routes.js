@@ -6,8 +6,8 @@ const parser          = require('body-parser');
 const router          = express.Router();
 
 const user            = require('../app/models/user');
-const { Results }     = require('../app/models/results');
-const { Predictions } = require('../app/models/prediction');
+const { results }     = require('../app/models/results');
+const { predictions } = require('../app/models/prediction');
 const configAuth      = require('../config/auth');
 
 
@@ -22,7 +22,7 @@ module.exports = function(router) {
             'headers' : {
                 'X-Auth-Token' : configAuth.footballToken
             },
-            'rejectUnauthorized': false
+            'rejectUnauthorized' : false
         })
         .then(data => {
             if (!data) {
@@ -35,14 +35,14 @@ module.exports = function(router) {
             let numberofPredictions = 0;
             let completedPredictions = 0;
             // go grab all Predictions for this matchDay
-            Predictions.find({ matchday : matchday },function(err,predictions){
+            predictions.find({ matchday : matchday }, function(err, predictions) {
                 //console.log('predictions calc:', predictions)
                 // loop through all predictions
                 numberofPredictions = predictions.length;
                 for (let i = 0; i < predictions.length; i++) {
                     for (let j = 0; j < data.matches.length; j++) {
                         if (data.matches[j].matchday == matchday) {
-                            fixture = search(data.matches[j].homeTeam.name,data.matches[j].awayTeam.name,predictions[i].fixtures);
+                            fixture = search(data.matches[j].homeTeam.name, data.matches[j].awayTeam.name, predictions[i].fixtures);
                             if (data.matches[j].score.winner == predictions[i].fixtures[fixture].prediction) {
                                 predictions[i].fixtures[fixture].winner = data.matches[j].score.winner; // HOME_TEAM, AWAY_TEAM, DRAW
                                 predictions[i].fixtures[fixture].result = 1;
@@ -54,7 +54,7 @@ module.exports = function(router) {
                 }
             });
 
-            function search(homeTeam, awayTeam, myArray){
+            function search(homeTeam, awayTeam, myArray) {
                 for (var i=0; i < myArray.length; i++) {
                     if (myArray[i].home_team === homeTeam && myArray[i].away_team === awayTeam) {
                         return i;
@@ -64,7 +64,7 @@ module.exports = function(router) {
 
             function checkComplete(){
                 completedPredictions++;
-                if(completedPredictions == numberofPredictions){
+                if(completedPredictions == numberofPredictions) {
                     //res.send(200);
                     res.redirect('/updatePoints');
                 }
@@ -92,11 +92,24 @@ module.exports = function(router) {
 
         }*/
         let userIds = [];
+        let total = 0;
         user.find({}).exec()
             .then(function(users){
-                users.forEach(function(user){
+                users.forEach(function(user) {
                     userIds.push(user._id);
                 });
+
+                for (let i = 0; i < predictions.length; i++) {
+                    for (let j = 0; j < userIds.length; j++) {
+                        if (predictions[i].user_id === userIds[j] && predictions[i].result === 1) {
+                            total++;
+                            user[j].points = total;
+                            user[j].save();
+                            const message = ('points updated');
+                            return res.send(200).send(message);
+                        }
+                    }
+                }
                 //return Predictions.find({user_id:{$in:userIds}})
             });
     });
@@ -158,7 +171,9 @@ module.exports = function(router) {
     router.post('/predictions', function(req, res) {
         console.log(req.body);
         for (let i = 0; i < 10; i++) {
-            Predictions.create({
+            predictions.create({
+                home_team  : req.body.fixtureHome[i + 1],
+                away_team  : req.body.fixtureAway[i + 1],
                 prediction : req.body.fixture_[i + 1]
             });
         }

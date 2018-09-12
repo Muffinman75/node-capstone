@@ -19,9 +19,9 @@
                     <% for (let i = 0; i < data.matches.length; i++) { %>
 
                     <tr>
-                        <td><label><input value="HOME_WIN" type="radio" name="fixture_<%=i+1%>" required><%= data.matches[i].homeTeam.name  %></label></td>
-                        <td><input value="DRAW" type="radio" name="fixture_<%=i+1%>"></td>
-                        <td><label><input value="AWAY_WIN"type="radio" name="fixture_<%=i+1%>"><%= data.matches[i].awayTeam.name %></label></td>
+                        <td><input id="home" value="HOME_WIN" type="radio" name="fixture_<%=i+1%>" required><input id="home" type="hidden" name="fixtureHome<%=i+1%>" value="<%= data.matches[i].homeTeam.name %>"<label for="home"><%= data.matches[i].homeTeam.name %></label></td>
+                        <td><input id="draw" value="DRAW" type="radio" name="fixture_<%=i+1%>">
+                        <td><input id="away" value="AWAY_WIN"type="radio" name="fixture_<%=i+1%>"><input id="away" type="hidden" name="fixtureAway<%=i+1%>" value="<%= data.matches[i].awayTeam.name %>"<label for="away"><%= data.matches[i].awayTeam.name %></label></td>
                     </tr>
 
                     <% } %>

@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
 
     points             : Number,
     local              : {
-        email          : String,
+        userName       : String,
         password       : String,
 
 
