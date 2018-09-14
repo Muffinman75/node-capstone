@@ -10,6 +10,37 @@
         <h2>My current predictions</h2>
         <p>"pull this users predictions from database to here"</p>
 
+        <form method="post" action="/update-predictions">
+            <input type="hidden" name="matchDay" value="<%=predictions.matchDay%>">
+            <fieldset>
+                <legend><h2>PREDICTIONS</h2></legend>
+                <table>
+                    <tr>
+                        <th>Home Win</th>
+                        <th>Draw</th>
+                        <th>Away Win</th>
+                    </tr>
+
+                    <% for (let i = 0; i < data.length; i++) { %>
+
+                    <tr>
+                        <td><label><input type="radio" name="fixture_<%=i+1%>" value="HOME_WIN"><%= (data.fixtures[i].prediction == "HOME_WIN") : "checked" ? "" %></label><input type="hidden" name="fixtureHome_<%=i+1%>" value="<%= thisWeeksFixtures[i].home_team %>"></td>
+                        <td><input value="DRAW" type="radio" name="fixture_<%=i+1%>"><%= (data.fixtures[i].prediction == "DRAW") : "checked" ? "" %></td>
+                        <td><label><%= (data.fixtures[i].prediction == "HOME_WIN") : "checked" ? "" %><input type="radio" name="fixture_<%=i+1%>" value="AWAY_WIN"></label><input type="hidden" name="fixtureAway_<%=i+1%>" value="<%= data[i].away_team %>"></td>
+                    </tr>
+
+                    <% } %>
+
+                </table>
+            </fieldset>
+            <button type="submit">Submit Predictions</button>
+        </form>
+
+        <a href="/leaderboard">Check Leaderboard</a>
+        <a href="/results">Check Results</a>
+        <br>
+        <br>
+
         <button type="submit">Update Predictions</button>
     </body>
 </html>

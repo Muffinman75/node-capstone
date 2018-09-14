@@ -16,9 +16,16 @@
                 <th>Points</th>
             </tr>
 
+            <% for (let i = 0; i < data.local.userName.length; i++) { %>
+
             <tr>
-                <th></th>
+                <td><%= i+1 %></td>
+                <td><%= data.local.userName %></td>
+                <td><%= data.local.points %></td>
             </tr>
+
+            <% } %>
+
         </table>
 
         <br>

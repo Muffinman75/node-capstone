@@ -9,6 +9,7 @@
         <h2>RESULTS</h2>
 
         <table style="width:100%" method="get" action="/matchday-results">
+        <input type="hidden" name="matchDay" value="<%=data.matches[0].season.currentMatchday - 1%>">
             <tr>
                 <th>Home</th>
                 <th>Score</th>

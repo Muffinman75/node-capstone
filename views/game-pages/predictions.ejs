@@ -7,8 +7,9 @@
     </head>
     <body>
         <form method="post" action="/predictions">
+            <input type="hidden" name="matchDay" value="<%=data[0].season.currentMatchday%>">
             <fieldset>
-                <legend><h2>PREDICTIONS</h2></legend>
+                <legend><h1>PREDICTIONS</h1></legend>
                 <table>
                     <tr>
                         <th>Home Win</th>
@@ -16,18 +17,19 @@
                         <th>Away Win</th>
                     </tr>
 
-                    <% for (let i = 0; i < data.matches.length; i++) { %>
+                    <% for (let i = 0; i < data.length; i++) { %>
 
                     <tr>
-                        <td><input id="home" value="HOME_WIN" type="radio" name="fixture_<%=i+1%>" required><input id="home" type="hidden" name="fixtureHome<%=i+1%>" value="<%= data.matches[i].homeTeam.name %>"<label for="home"><%= data.matches[i].homeTeam.name %></label></td>
-                        <td><input id="draw" value="DRAW" type="radio" name="fixture_<%=i+1%>">
-                        <td><input id="away" value="AWAY_WIN"type="radio" name="fixture_<%=i+1%>"><input id="away" type="hidden" name="fixtureAway<%=i+1%>" value="<%= data.matches[i].awayTeam.name %>"<label for="away"><%= data.matches[i].awayTeam.name %></label></td>
+                        <td><label><input value="HOME_WIN" type="radio" name="fixture_<%=i+1%>" required><%= data[i].homeTeam.name %></label><input type="hidden" name="fixtureHome_<%=i+1%>" value="<%= data[i].homeTeam.name %>"></td>
+                        <td><input value="DRAW" type="radio" name="fixture_<%=i+1%>">
+                        <td><label><%= data[i].awayTeam.name %><input value="AWAY_WIN" type="radio" name="fixture_<%=i+1%>"></label><input type="hidden" name="fixtureAway_<%=i+1%>" value="<%= data[i].awayTeam.name %>"></td>
                     </tr>
 
                     <% } %>
 
                 </table>
             </fieldset>
+            <h2>If you have already submitted predictions for this week you will be redirected to the update predictions page when you hit the submit button</h2>
             <button type="submit">Submit Predictions</button>
         </form>
 
