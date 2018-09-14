@@ -11,7 +11,7 @@
         <p>"pull this users predictions from database to here"</p>
 
         <form method="post" action="/update-predictions">
-            <input type="hidden" name="matchDay" value="<%=predictions.matchDay%>">
+            <input type="hidden" name="matchDay" value="<%=prediction.matchDay%>">
             <fieldset>
                 <legend><h2>PREDICTIONS</h2></legend>
                 <table>
@@ -21,12 +21,12 @@
                         <th>Away Win</th>
                     </tr>
 
-                    <% for (let i = 0; i < data.length; i++) { %>
+                    <% for (let i = 0; i < prediction.fixtures.length; i++) { %>
 
                     <tr>
-                        <td><label><input type="radio" name="fixture_<%=i+1%>" value="HOME_WIN"><%= (data.fixtures[i].prediction == "HOME_WIN") : "checked" ? "" %></label><input type="hidden" name="fixtureHome_<%=i+1%>" value="<%= thisWeeksFixtures[i].home_team %>"></td>
-                        <td><input value="DRAW" type="radio" name="fixture_<%=i+1%>"><%= (data.fixtures[i].prediction == "DRAW") : "checked" ? "" %></td>
-                        <td><label><%= (data.fixtures[i].prediction == "HOME_WIN") : "checked" ? "" %><input type="radio" name="fixture_<%=i+1%>" value="AWAY_WIN"></label><input type="hidden" name="fixtureAway_<%=i+1%>" value="<%= data[i].away_team %>"></td>
+                        <td><label><input type="radio" name="fixture_<%=i+1%>" value="HOME_WIN" <%= (prediction.fixtures[i].prediction == "HOME_WIN" ? "checked" : "") %>><%= prediction.fixtures[i].home_team %></label><input type="hidden" name="fixtureHome_<%=i+1%>" value="<%= prediction.fixtures[i].home_team %>"></td>
+                        <td><input value="DRAW" type="radio" name="fixture_<%=i+1%>" <%= (prediction.fixtures[i].prediction == "DRAW" ? "checked" : "") %>></td>
+                        <td><label><input type="radio" name="fixture_<%=i+1%>" value="AWAY_WIN" <%= (prediction.fixtures[i].prediction == "AWAY_WIN" ? "checked" : "") %>><%= prediction.fixtures[i].away_team %></label><input type="hidden" name="fixtureAway_<%=i+1%>" value="<%= prediction.fixtures[i].away_team %>"></td>
                     </tr>
 
                     <% } %>

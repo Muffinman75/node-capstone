@@ -153,7 +153,7 @@ module.exports = function(router) {
     // =========================
     // PREDICTIONS PAGE
     // =========================
-    router.get('/predictions', function(req, res) {
+    router.get('/predictions', isLoggedIn, function(req, res) {
         debugger
         requestPromise({
             'method'  : 'GET',
@@ -199,35 +199,37 @@ module.exports = function(router) {
                 console.log(req.user);
                 const matchday = data.matches[0].season.currentMatchday;
                 console.log('matchday:', matchday);
-                Predictions.find({ user_id : req.user_id, matchDay : matchday }, function(err, prediction) {
-                    if (prediction) {
-                        res.render('game-pages/update-predictions');
+                Predictions.find({ user_id : req.user._id, matchDay : matchday }, function(err, prediction) {
+                    if (prediction.length) {
+                        res.render('game-pages/update-predictions',{prediction:prediction[0],data:data});
                         // req.flash('You have already made predictions for this weeks fixtures but you can update them here');
-                    }
-                    let fixtures = [];
-                    for (let i = 0; i < 10; i++) {
-                        fixtures.push({
-                            home_team  : req.body["fixtureHome_" + (i + 1)],
-                            away_team  : req.body["fixtureAway_" + (i + 1)],
-                            prediction : req.body["fixture_" + (i + 1)]
-                        });
-                    }
-                    Predictions.create({
-                        user_id: req.user._id,
-                        matchDay: req.body.matchDay,
-                        fixtures: fixtures
-                    }),
-                    function(err, prediction) {
-                        if(!err) {
-                            console.log('prediction:', prediction);
-                            res.render('game-pages/predictions-posted.ejs');
+                    } else {
+                        let fixtures = [];
+                        for (let i = 0; i < 10; i++) {
+                            fixtures.push({
+                                home_team  : req.body["fixtureHome_" + (i + 1)],
+                                away_team  : req.body["fixtureAway_" + (i + 1)],
+                                prediction : req.body["fixture_" + (i + 1)]
+                            });
                         }
-                    };
+                        Predictions.create({
+                            user_id: req.user._id,
+                            matchDay: req.body.matchDay,
+                            fixtures: fixtures
+                        }),
+                        function(err, prediction) {
+                            if(!err) {
+                                console.log('prediction:', prediction);
+                                res.render('game-pages/predictions-posted.ejs');
+                            }
+                        };
+                    }
                 });
+            } else {
+                const message = ('No Footy Data');
+                console.error(message);
+                return res.status(404).send(message);
             }
-            const message = ('No Footy Data');
-            console.error(message);
-            return res.status(404).send(message);
         })
         .catch(err => res.status(500).json({ message: 'Cannot display predictions page' }));
     });
@@ -315,7 +317,6 @@ module.exports = function(router) {
             }
         });
     });
-
 
 };
 
