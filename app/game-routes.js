@@ -68,8 +68,8 @@ module.exports = function(router) {
             function checkComplete(){
                 completedPredictions++;
                 if(completedPredictions == numberofPredictions) {
-                    //res.send(200);
-                    res.redirect('/updatePoints');
+                    res.send(200);
+                    //res.redirect('/updatePoints');
                 }
             }
 
@@ -138,8 +138,8 @@ module.exports = function(router) {
     // =========================
     // LEADERBOARD PAGE
     // =========================
-    router.get('/leaderboard', function(req, res) {
-        user.find({'local.userName' : req.body.userName }).exec().sort({points : 'desc'}).limit(20)
+    router.get('/leaderboard', isLoggedIn, function(req, res) {
+        user.find({ user_id : req.user._id }).exec().sort({points : 'desc'}).limit(10)
         .then(data => {
             console.log('leaderboard:', data);
             res.render('game-pages/leaderboard', { data : data });
@@ -217,11 +217,11 @@ module.exports = function(router) {
                             user_id: req.user._id,
                             matchDay: req.body.matchDay,
                             fixtures: fixtures
-                        }),
+                        },
                         function(err, prediction) {
                             console.log('prediction:', prediction);
                             res.render('game-pages/predictions-posted');
-                        };
+                        });
                     }
                 });
             } else {
@@ -257,17 +257,15 @@ module.exports = function(router) {
             Predictions.findOneAndUpdate({ user_id : req.user._id, matchDay : matchday },
             function(err, prediction) {
                 console.log('update preds:', preds);
-                if (prediction.length < 1) {
-                    req.flash('You have\'nt made a prediction for this week to update, Please make one now');
-                    res.render('game-pages/predictions.ejs', );
-                    //res.render('game-pages/predictions')
-                } else {
-                // const thisWeeksFixtures = [];
-                // console.log('empty update list:', thisWeeksFixtures);
-                // for (let i = 0; i < prediction.fixtures.length; i++) {
-                //     thisWeeksFixtures.push(prediction.fixtures[i]);
-                // }
-                // console.log('Updateable fixtures:', thisWeeksFixtures);
+                if (prediction.length) {
+
+                    // const thisWeeksFixtures = [];
+                    // console.log('empty update list:', thisWeeksFixtures);
+                    // for (let i = 0; i < prediction.fixtures.length; i++) {
+                    //     thisWeeksFixtures.push(prediction.fixtures[i]);
+                    // }
+                    // console.log('Updateable fixtures:', thisWeeksFixtures);
+                    prediction.save();
                     res.render('game-pages/update-predictions',{ prediction : prediction[0], data : data });
                 }
             });

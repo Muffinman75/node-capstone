@@ -3,6 +3,7 @@
 // import all the tools needed
 const express   = require('express');
 const app       = express();
+require('run-middleware')(app);
 const port      = process.env.PORT || 8080;
 const mongoose  = require('mongoose');
 const passport  = require('passport');
@@ -12,15 +13,15 @@ const morgan        = require('morgan');
 const cookieParser  = require('cookie-parser');
 const bodyParser    = require('body-parser');
 const session       = require('express-session');
-
-const configDB = require('./config/database.js');
+const cron          = require('node-cron');
+const configDB      = require('./config/database.js');
 
 mongoose.connect(configDB.url, { useNewUrlParser : true }); // connect to the database
 
 require('./config/passport')(passport); // pass passport for configuration
 
 // set up the express application
-app.use(morgan('dev')); // log each request to the console
+// app.use(morgan('dev')); // log each request to the console
 app.use(cookieParser()); // read cookies (needed for oauth)
 app.use(bodyParser()); // get info from html forms
 app.use(express.static('public'));
@@ -35,6 +36,22 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 require('./app/auth-routes.js')(app, passport); // load the routes and pass in the app and configured passport
 require('./app/game-routes.js')(app);
+
+cron.schedule('* */1 * * *', () => {
+    console.log('cron running');
+    app.runMiddleware(
+    "/checkPredictions",
+    function(response) {
+        console.log(response);
+        app.runMiddleware(
+            "/updatePoints",
+            function(response){
+                console.log(response);
+            }
+        )
+    }
+    );
+});
 
 app.listen(port);
 console.log('communicating through port ' + port);
