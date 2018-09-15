@@ -200,8 +200,9 @@ module.exports = function(router) {
                 const matchday = data.matches[0].season.currentMatchday;
                 console.log('matchday:', matchday);
                 Predictions.find({ user_id : req.user._id, matchDay : matchday }, function(err, prediction) {
+                    console.log('posting predictions:', prediction);
                     if (prediction.length) {
-                        res.render('game-pages/update-predictions',{prediction:prediction[0],data:data});
+                        res.render('game-pages/update-predictions',{ prediction : prediction[0], data : data });
                         // req.flash('You have already made predictions for this weeks fixtures but you can update them here');
                     } else {
                         let fixtures = [];
@@ -218,10 +219,8 @@ module.exports = function(router) {
                             fixtures: fixtures
                         }),
                         function(err, prediction) {
-                            if(!err) {
-                                console.log('prediction:', prediction);
-                                res.render('game-pages/predictions-posted.ejs');
-                            }
+                            console.log('prediction:', prediction);
+                            res.render('game-pages/predictions-posted');
                         };
                     }
                 });
@@ -233,6 +232,11 @@ module.exports = function(router) {
         })
         .catch(err => res.status(500).json({ message: 'Cannot display predictions page' }));
     });
+
+    router.get('/predictions-posted', isLoggedIn, function(req, res) {
+        res.render('game-pages/predictions-posted');
+    });
+
     router.put('game-pages/update-predictions/', isLoggedIn, function(req, res) {
         requestPromise({
             'method'  : 'GET',
@@ -250,20 +254,22 @@ module.exports = function(router) {
                 return res.status(404).send(message);
             }
             const matchday = data.matches[0].season.currentMatchday;
-            Predictions.findOne({ user_id : req.user_id, matchDay : matchday },
+            Predictions.findOneAndUpdate({ user_id : req.user._id, matchDay : matchday },
             function(err, prediction) {
-                if (!prediction) {
+                console.log('update preds:', preds);
+                if (prediction.length < 1) {
                     req.flash('You have\'nt made a prediction for this week to update, Please make one now');
-                    res.render('game-pages/predictions.ejs');
+                    res.render('game-pages/predictions.ejs', );
                     //res.render('game-pages/predictions')
+                } else {
+                // const thisWeeksFixtures = [];
+                // console.log('empty update list:', thisWeeksFixtures);
+                // for (let i = 0; i < prediction.fixtures.length; i++) {
+                //     thisWeeksFixtures.push(prediction.fixtures[i]);
+                // }
+                // console.log('Updateable fixtures:', thisWeeksFixtures);
+                    res.render('game-pages/update-predictions',{ prediction : prediction[0], data : data });
                 }
-                const thisWeeksFixtures = [];
-                console.log('empty update list:', thisWeeksFixtures);
-                for (let i = 0; i < prediction.fixtures.length; i++) {
-                    thisWeeksFixtures.push(prediction.fixtures[i]);
-                }
-                console.log('Updateable fixtures:', thisWeeksFixtures);
-                res.render('game-pages/update-predictions', { data : thisWeeksFixtures });
             });
         })
         .catch(err => res.status(500).json({ message: 'Internal server error' }));
