@@ -37,16 +37,16 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 require('./app/auth-routes.js')(app, passport); // load the routes and pass in the app and configured passport
 require('./app/game-routes.js')(app);
 
-cron.schedule('* */1 * * *', () => {
+cron.schedule('* * */1 * *', () => {
     console.log('cron running');
     app.runMiddleware(
     "/checkPredictions",
     function(response) {
-        console.log(response);
+        //console.log(response);
         app.runMiddleware(
             "/updatePoints",
             function(response){
-                console.log(response);
+                //console.log(response);
             }
         )
     }

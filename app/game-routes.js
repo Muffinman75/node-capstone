@@ -233,8 +233,33 @@ module.exports = function(router) {
         .catch(err => res.status(500).json({ message: 'Cannot display predictions page' }));
     });
 
-    router.get('/predictions-posted', isLoggedIn, function(req, res) {
-        res.render('game-pages/predictions-posted');
+    router.get('game-pages/update-predictions', isLoggedIn, function(req, res) {
+        requestPromise({
+            'method'  : 'GET',
+            'uri'     : 'https://football-data.org/v2/competitions/PL/matches',
+            'json'    : true,
+            'headers' : {
+                'X-Auth-Token' : configAuth.footballToken
+            },
+            'rejectUnauthorized': false
+        })
+        .then(data => {
+            console.log('update data:', data);
+            if (data) {
+                //console.log(req.body);
+                //console.log(req.user);
+                const matchday = data.matches[0].season.currentMatchday;
+                console.log('matchday:', matchday);
+                Predictions.find({ user_id : req.user._id, matchDay : matchday }, function(err, prediction) {
+                    console.log('getting predictions to update:', prediction);
+                    if (prediction.length) {
+                        res.render('game-pages/update-predictions',{ prediction : prediction[0], data : data });
+                        // req.flash('You have already made predictions for this weeks fixtures but you can update them here');
+                    }
+                });
+            }
+        })
+        .catch(err => res.status(500).json({ message: 'Cannot display predictions page' }));
     });
 
     router.put('game-pages/update-predictions/', isLoggedIn, function(req, res) {
@@ -266,7 +291,7 @@ module.exports = function(router) {
                     // }
                     // console.log('Updateable fixtures:', thisWeeksFixtures);
                     prediction.save();
-                    res.render('game-pages/update-predictions',{ prediction : prediction[0], data : data });
+                    res.render('game-pages/predictions-posted',{ prediction : prediction[0], data : data });
                 }
             });
         })
@@ -323,6 +348,11 @@ module.exports = function(router) {
     });
 
 };
+
+function saveUpdatedPredictions() {
+    prediction.save();
+    res.render('game-pages/predictions-posted');
+}
 
 function isLoggedIn(req, res, next) {
     // if user is authenticated in session then carry on
