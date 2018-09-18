@@ -37,11 +37,12 @@ module.exports = function(router) {
             let numberofPredictions = 0;
             let completedPredictions = 0;
             // go grab all Predictions for this matchDay
+            console.log('matchday:', matchday);
             Predictions.find({ matchDay : matchday }, function(err, predictions) {
                 //console.log('predictions calc:', predictions)
                 // loop through all predictions
                 numberofPredictions = predictions.length;
-                console.log('found predictions,',numberofPredictions);
+                console.log('found predictions,', numberofPredictions);
                 for (let i = 0; i < predictions.length; i++) {
                     for (let j = 0; j < data.matches.length; j++) {
                         if (data.matches[j].matchDay == matchday) {
@@ -139,10 +140,20 @@ module.exports = function(router) {
     // LEADERBOARD PAGE
     // =========================
     router.get('/leaderboard', isLoggedIn, function(req, res) {
-        user.find({ user_id : req.user._id }).exec().sort({points : 'desc'}).limit(10)
-        .then(data => {
-            console.log('leaderboard:', data);
-            res.render('game-pages/leaderboard', { data : data });
+        user.find({}).exec()
+        .then(function(users) {
+            let sortable = [];
+    	    for (let key in users) {
+    		    if (users.hasOwnProperty(key)) {
+    			    sortable.push([key, users[key]]); // each item is an array in format [key, value]
+                }
+            }
+    	     // sort items by value
+             console.log('user array: ', sortable);
+    	    sortable.sort(function(a, b) {
+    	        return a[1]-b[1]; // compare numbers
+    	    });
+    	    res.render('game-pages/leaderboard', { data : sortable }); // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
         });
     });
     //     /*
@@ -202,7 +213,7 @@ module.exports = function(router) {
                 Predictions.find({ user_id : req.user._id, matchDay : matchday }, function(err, prediction) {
                     console.log('posting predictions:', prediction);
                     if (prediction.length) {
-                        res.render('game-pages/update-predictions',{ prediction : prediction[0], data : data });
+                        res.render('game-pages/update-predictions', { prediction : prediction[0], data : data });
                         // req.flash('You have already made predictions for this weeks fixtures but you can update them here');
                     } else {
                         let fixtures = [];
@@ -233,7 +244,8 @@ module.exports = function(router) {
         .catch(err => res.status(500).json({ message: 'Cannot display predictions page' }));
     });
 
-    router.get('game-pages/update-predictions', isLoggedIn, function(req, res) {
+    router.get('update-predictions', isLoggedIn, function(req, res) {
+        console.log(req.body);
         requestPromise({
             'method'  : 'GET',
             'uri'     : 'https://football-data.org/v2/competitions/PL/matches',
@@ -244,19 +256,31 @@ module.exports = function(router) {
             'rejectUnauthorized': false
         })
         .then(data => {
-            console.log('update data:', data);
             if (data) {
-                //console.log(req.body);
-                //console.log(req.user);
+                console.log(req.body);
+                console.log(req.user);
                 const matchday = data.matches[0].season.currentMatchday;
                 console.log('matchday:', matchday);
                 Predictions.find({ user_id : req.user._id, matchDay : matchday }, function(err, prediction) {
-                    console.log('getting predictions to update:', prediction);
+                    console.log('posting predictions:', prediction);
                     if (prediction.length) {
-                        res.render('game-pages/update-predictions',{ prediction : prediction[0], data : data });
+                        res.render('game-pages/update-predictions', { prediction : prediction[0], data : data });
                         // req.flash('You have already made predictions for this weeks fixtures but you can update them here');
+                    } else {
+                        let thisWeeksFixtures = [];
+                        console.log('Weeks Fixtures:', thisWeeksFixtures);
+                        for (let i = 0; i < data.matches.length; i++) {
+                            if (data.matches[i].matchday == matchday) {
+                                thisWeeksFixtures.push(data.matches[i]);
+                            }
+                        }
+                        res.render('game-pages/predictions', { data : thisWeeksFixtures });
                     }
                 });
+            } else {
+                const message = ('No Footy Data');
+                console.error(message);
+                return res.status(404).send(message);
             }
         })
         .catch(err => res.status(500).json({ message: 'Cannot display predictions page' }));
@@ -316,7 +340,7 @@ module.exports = function(router) {
                 console.error(message);
                 return res.status(404).send(message);
             }
-            const matchday = data.matches[0].season.currentMatchday - 1;
+            const matchday = data.matches[0].season.currentMatchday;
             console.log('matchday:', matchday);
             return requestPromise({
                 'method'  : 'GET',
