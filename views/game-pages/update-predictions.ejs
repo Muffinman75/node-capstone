@@ -9,7 +9,7 @@
         <h1>Changed Your Mind?</h1>
         <h2>My current predictions</h2>
 
-        <form method="get" action="/update-predictions">
+        <form method="post" action="/update-predictions">
             <input type="hidden" name="matchDay" value="<%=prediction.matchDay%>">
             <fieldset>
                 <legend><h2>PREDICTIONS</h2></legend>
@@ -23,16 +23,16 @@
                     <% for (let i = 0; i < prediction.fixtures.length; i++) { %>
 
                     <tr>
-                        <td><label><input type="radio" name="fixture_<%=i+1%>" value="HOME_WIN" <%= (prediction.fixtures[i].prediction == "HOME_WIN" ? "checked" : "") %>><%= prediction.fixtures[i].home_team %></label><input type="hidden" name="fixtureHome_<%=i+1%>" value="<%= prediction.fixtures[i].home_team %>"></td>
-                        <td><input value="DRAW" type="radio" name="fixture_<%=i+1%>" <%= (prediction.fixtures[i].prediction == "DRAW" ? "checked" : "") %>></td>
-                        <td><label><input type="radio" name="fixture_<%=i+1%>" value="AWAY_WIN" <%= (prediction.fixtures[i].prediction == "AWAY_WIN" ? "checked" : "") %>><%= prediction.fixtures[i].away_team %></label><input type="hidden" name="fixtureAway_<%=i+1%>" value="<%= prediction.fixtures[i].away_team %>"></td>
+                        <td><label><input type="radio" name="fixture_<%=i%>" value="HOME_WIN" <%= (prediction.fixtures[i].prediction == "HOME_WIN" ? "checked" : "") %>><%= prediction.fixtures[i].home_team %></label><input type="hidden" name="fixtureHome_<%=i%>" value="<%= prediction.fixtures[i].home_team %>"></td>
+                        <td><input value="DRAW" type="radio" name="fixture_<%=i%>" <%= (prediction.fixtures[i].prediction == "DRAW" ? "checked" : "") %>></td>
+                        <td><label><input type="radio" name="fixture_<%=i%>" value="AWAY_WIN" <%= (prediction.fixtures[i].prediction == "AWAY_WIN" ? "checked" : "") %>><%= prediction.fixtures[i].away_team %></label><input type="hidden" name="fixtureAway_<%=i%>" value="<%= prediction.fixtures[i].away_team %>"></td>
                     </tr>
 
                     <% } %>
 
                 </table>
             </fieldset>
-            <button type="submit" <%= onclick="saveUpdatedPredictions()" %>>Update Predictions</button>
+            <button type="submit">Update Predictions</button>
         </form>
 
         <a href="/leaderboard">Check Leaderboard</a>
