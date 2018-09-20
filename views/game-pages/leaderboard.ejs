@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
-        <meta charset="utf-8">
-        <title></title>
+
         <% include ../partials/head %>
+
     </head>
     <body>
+
+    <% include ../partials/header %>
+
         <h2>LEADERBOARD</h2>
 
         <table>
 
             <tr>
-                <th>Ranking</th>
+                <th class="thin-col">Pos</th>
                 <th>Name</th>
-                <th>Points</th>
+                <th class="thin-col">Pts</th>
             </tr>
 
             <% for (let i = 0; i < data.length; i++) { %>
 
             <tr>
-                <td><%= i+1 %></td>
+                <td class="thin-col"><%= i+1 %></td>
                 <td><%= data[i][1].local.userName %></td>
-                <td><%= data[i][1].points %></td>
+                <td class="thin-col"><%= data[i][1].points %></td>
             </tr>
 
             <% } %>
@@ -30,9 +33,12 @@
 
         <br>
         <br>
-        <a href="/predictions">Make Predictions</a>
-        <a href="/results">Check Results</a>
-        <a href="/update-predictions">Change Predictions</a>
-        <a href="/profile">Home Page</a>
+        <a class="button" href="/predictions">Make Predictions</a>
+        <a class="button" href="/results">Check Results</a>
+        <a class="button" href="/update-predictions">Change Predictions</a>
+        <a class="button" href="/profile">Home Page</a>
+
+        <% include ../partials/footer %>
+
     </body>
 </html>

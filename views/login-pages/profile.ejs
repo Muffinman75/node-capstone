@@ -1,20 +1,17 @@
 
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <style>
-        body        { padding-top:80px; word-wrap:break-word; }
-    </style>
+    <% include ../partials/head %>
 </head>
 <body>
+
+    <% include ../partials/header %>
+
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <h1><span class=""></span> Welcome, <%= user.local.userName %>!</h1>
     </div>
 
     <div class="row">
@@ -37,6 +34,7 @@
                     <a href="/predictions">Make Predictions</a>
                     <a href="/updatePredictions">Change Predictions</a>
                     <a href="/results">Check Results</a>
+                    <a href="/logout" class="btn btn-default btn-sm">Logout</a>
                 <% } else { %>
                     <a href="/connect/local" class="btn btn-default">Connect Local</a>
                 <% } %>
@@ -115,5 +113,8 @@
     </div> -->
 
 </div>
+
+<% include ../partials/footer %>
+
 </body>
 </html>

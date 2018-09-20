@@ -2,10 +2,14 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title></title>
+
         <% include ../partials/head %>
+
     </head>
     <body>
+
+        <% include ../partials/header %>
+
         <form method="post" action="/predictions">
             <input type="hidden" name="matchDay" value="<%=data[0].season.currentMatchday%>">
             <fieldset>
@@ -21,7 +25,7 @@
 
                     <tr>
                         <td><label><input value="HOME_WIN" type="radio" name="fixture_<%=i+1%>" required><%= data[i].homeTeam.name %></label><input type="hidden" name="fixtureHome_<%=i+1%>" value="<%= data[i].homeTeam.name %>"></td>
-                        <td><input value="DRAW" type="radio" name="fixture_<%=i+1%>">
+                        <td class="thin-col"><input value="DRAW" type="radio" name="fixture_<%=i+1%>">
                         <td><label><%= data[i].awayTeam.name %><input value="AWAY_WIN" type="radio" name="fixture_<%=i+1%>"></label><input type="hidden" name="fixtureAway_<%=i+1%>" value="<%= data[i].awayTeam.name %>"></td>
                     </tr>
 
@@ -33,11 +37,11 @@
             <button type="submit">Submit Predictions</button>
         </form>
 
-        <a href="/leaderboard">Check Leaderboard</a>
-        <a href="/results">Check Results</a>
-        <a href="/profile">Home Page</a>
-        <br>
-        <br>
+        <a class="button" href="/leaderboard">Check Leaderboard</a>
+        <a class="button" href="/results">Check Results</a>
+        <a class="button" href="/profile">Home Page</a>
+
+        <% include ../partials/footer %>
 
     </body>
 </html>

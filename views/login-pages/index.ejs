@@ -1,37 +1,38 @@
 
 <!-- views/index.ejs -->
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body        { padding-top: 80px; }
-    </style>
+    <% include ../partials/head %>
 </head>
 <body>
-<div class="container">
 
-    <div class="jumbotron text-center">
-        <h1><span class="fa fa-lock"></span> EPL Prediction Game</h1>
+    <% include ../partials/header %>
 
-        <p>Think you know who is going to win this weeks premier league matches?</p>
-        <p>Do your friends think you're full of it?</p>
-        <p>Put your money where your mouth is (completely free of course!) and compete with other members to see
-        who will be this weeks winners and losers in the English Premier League</p>
-        <p>Be sure to check the results here at least every week (don't forget about midweek games!)</p>
-        <p>Check the leaderboard to see how well you are doing!</p>
+    <div class="container">
 
-        <p>Login or Register with:</p>
+        <div class="jumbotron text-center">
+            <h1><span class="fa fa-lock"></span> EPL Prediction Game</h1>
 
-        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
-        <!-- <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a> -->
-        <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>
-        <!-- <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a> -->
+            <p>Think you know who is going to win this weeks premier league matches?</p>
+            <p>Do your friends think you're full of it?</p>
+            <p>Put your money where your mouth is (completely free of course!) and compete with other members to see
+            who will be this weeks winners and losers in the English Premier League</p>
+            <p>Be sure to check the results here at least every week (don't forget about midweek games!)</p>
+            <p>Check the leaderboard to see how well you are doing!</p>
+
+            <p>Login or Register with:</p>
+
+            <a class="button" href="/login" class="btn btn-default"> Local Login</a>
+            <a class="button" href="/signup" class="btn btn-default"> Local Signup</a>
+            <!-- <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a> -->
+            <a class="button" href="/auth/twitter" class="btn btn-info"><span class="fab fa-twitter-square"></span> Twitter</a>
+            <!-- <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a> -->
+        </div>
+
     </div>
 
-</div>
+    <% include ../partials/footer %>
+
 </body>
 </html>

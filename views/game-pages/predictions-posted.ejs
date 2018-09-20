@@ -2,16 +2,23 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title></title>
+
         <% include ../partials/head %>
+
     </head>
+
+    <% include ../partials/header %>
+
     <body method="get" action="game-pages/predictions-posted">
         <h1>SUCCESS - You have posted your predictions!</h1>
 
 
-        <a href="/leaderboard">Check Leaderboard</a>
-        <a href="/results">Check Results</a>
-        <a href="/updatePredictions">Change Predictions</a>
-        <a href="/profile">Home Page</a>
+        <a class="button" href="/leaderboard">Check Leaderboard</a>
+        <a class="button" href="/results">Check Results</a>
+        <a class="button" href="/updatePredictions">Change Predictions</a>
+        <a class="button" href="/profile">Home Page</a>
+
+        <% include ../partials/footer %>
+
     </body>
 </html>

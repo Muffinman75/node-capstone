@@ -2,10 +2,15 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title></title>
+
+
         <% include ../partials/head %>
+
     </head>
     <body>
+
+        <% include ../partials/header %>
+
         <h2>RESULTS</h2>
 
         <table style="width:100%" method="get" action="/matchday-results">
@@ -22,19 +27,22 @@
 
             <tr>
                 <td><%= data.matches[i].homeTeam.name  %></td>
-                <td><%= data.matches[i].score.fullTime.homeTeam %></td>
-                <td><%= data.matches[i].score.winner %></td>
+                <td class="thin-col"><%= data.matches[i].score.fullTime.homeTeam %></td>
+                <td class="thin-col"><%= data.matches[i].score.winner %></td>
                 <td><%= data.matches[i].awayTeam.name  %></td>
-                <td><%= data.matches[i].score.fullTime.awayTeam %></td>
+                <td class="thin-col"><%= data.matches[i].score.fullTime.awayTeam %></td>
             </tr>
 
             <% } %>
 
         </table>
 
-        <a href="/leaderboard">Check Leaderboard</a>
-        <a href="/predictions">Make Predictions</a>
-        <a href="/update-predictions">Change Predictions</a>
-        <a href="/profile">Home Page</a>
+        <a class="button" href="/leaderboard">Check Leaderboard</a>
+        <a class="button" href="/predictions">Make Predictions</a>
+        <a class="button" href="/update-predictions">Change Predictions</a>
+        <a class="button" href="/profile">Home Page</a>
+
+        <% include ../partials/footer %>
+
     </body>
 </html>

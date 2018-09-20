@@ -346,7 +346,7 @@ module.exports = function(router) {
                 console.error(message);
                 return res.status(404).send(message);
             }
-            const matchday = data.matches[0].season.currentMatchday;
+            const matchday = data.matches[0].season.currentMatchday - 1;
             console.log('matchday:', matchday);
             return requestPromise({
                 'method'  : 'GET',

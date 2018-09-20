@@ -2,10 +2,14 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title></title>
+
         <% include ../partials/head %>
+
     </head>
     <body>
+
+        <% include ../partials/header %>
+
         <h1>Changed Your Mind?</h1>
         <h2>My current predictions</h2>
 
@@ -35,11 +39,11 @@
             <button type="submit">Update Predictions</button>
         </form>
 
-        <a href="/leaderboard">Check Leaderboard</a>
-        <a href="/results">Check Results</a>
-        <a href="/profile">Home Page</a>
-        <br>
-        <br>
+        <a class="button" href="/leaderboard">Check Leaderboard</a>
+        <a class="button" href="/results">Check Results</a>
+        <a class="button" href="/profile">Home Page</a>
+
+        <% include ../partials/footer %>
 
     </body>
 </html>
