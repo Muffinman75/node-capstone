@@ -3,10 +3,10 @@
 }
 
 body {
-    background-color: #99ff66;
+    background-color: #FFFFFA;
 }
 
-h1 {
+.header {
     font-family: 'Francois One', sans-serif;
     margin: 0;
     padding-top: 7px;
@@ -14,20 +14,46 @@ h1 {
     text-align: left;
 }
 
-h2 {
+.form-group label {
+    text-align: center;
+}
+
+.success {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1, h2, h3 {
     font-family: 'Francois One', sans-serif;
     text-align: center;
+    margin-bottom: 25px;
+}
+
+legend {
+    font-family: 'Francois One', sans-serif;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 p {
     text-align: center;
 }
 
+p.text-center {
+    text-align: center;
+    font-weight: bold;
+}
+
+fieldset {
+    padding: 0;
+    border: none;
+}
+
 table {
     font-size: 63%;
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    max-width: 90%;
+    max-width: 97%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 25px;
@@ -35,7 +61,7 @@ table {
 
 td, th {
     border: 1px solid #004080;
-    border-radius: 2px;
+    border-radius: 10px;
     text-align: center;
     padding: 8px;
 }
@@ -45,31 +71,29 @@ td, th {
 }
 
 tr:nth-child(even) {
-    color: white;
+    color: #FFFFFA;
     background-color: #004080;
 }
 
-input {
-    width: 60%;
-}
-
-.far {
-    width: 100px;
-    height: 100px;
+.fas {
+    color: #FFFFFA;
     float: right;
     display: block;
     padding-top: 10px;
-    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .navbar-header {
-    background-color: #33ccff;
+    color: #FFFFFA;
+    background-color: #004080;
     margin-top: 0;
 }
 
 footer {
-    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     font-size: 10px;
+    left: 20px;
 }
 
 .footy-link {
@@ -77,9 +101,6 @@ footer {
 }
 
 a.button {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
     text-decoration: none;
     color: #004080;
     text-align: center;
@@ -110,7 +131,8 @@ button {
   cursor: pointer;
   display: block;
   margin: auto;
-  font-size: 1.5em;
+  margin-bottom: 15px;
+  font-size: 100%;
   font-weight: bolder;
   padding: 4px 10px 24px;
   border: 2px solid black;
@@ -118,4 +140,84 @@ button {
   transition-property: color, background;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
+}
+
+/* html {
+  background-color: #1a1a1a;
+  overflow: hidden;
+} */
+
+.fade input[type="radio"] {
+  display: none;
+}
+.fade input[type="radio"]:checked + .box {
+  background-color: #007e90;
+}
+.fade input[type="radio"]:checked + .box span {
+  color: white;
+  transform: translateY(70px);
+}
+.fade input[type="radio"]:checked + .box span:before {
+  transform: translateY(0px);
+  opacity: 1;
+}
+.fade .box {
+  width: 200px;
+  height: 200px;
+  background-color: #fff;
+  transition: all 250ms ease;
+  will-change: transition;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  font-family: "Francois One", sans-serif;
+  font-weight: 900;
+}
+.fade .box:active {
+  transform: translateY(10px);
+}
+.fade .box span {
+  position: absolute;
+  transform: translate(0, 60px);
+  left: 0;
+  right: 0;
+  transition: all 300ms ease;
+  font-size: 1.5em;
+  user-select: none;
+  color: #007e90;
+}
+.fade .box span:before {
+  font-size: 1.2em;
+  font-family: FontAwesome;
+  display: block;
+  transform: translateY(-80px);
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+  font-weight: normal;
+  color: white;
+}
+.fade .box-1 span:before {
+  content: '\f121';
+}
+.fade .box-3 span:before {
+  content: '\f0f4';
+}
+.fade p {
+  color: #fff;
+  font-family: "Francois One", sans-serif;
+  font-weight: 400;
+}
+.fade p span:after {
+  content: '\f0e7';
+  font-family: FontAwesome;
+  color: yellow;
+}
+
+
+@media screen and (min-width: 991px) {
+    table {
+        width: 60%;
+        font-size: 90%;
+    }
 }

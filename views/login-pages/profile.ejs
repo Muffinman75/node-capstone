@@ -19,24 +19,20 @@
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
 
                 <% if (user.local.userName) { %>
                     <p>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>username</strong>: <%= user.local.userName %><br>
-                        <strong>password</strong>: <%= user.local.password %><br>
                         <strong>points</strong>: <%= user.local.points %>
                     </p>
 
-                    <a href="/unlink/local" class="btn btn-default">Unlink account</a>
-                    <a href="/leaderboard">Check Leaderboard</a>
-                    <a href="/predictions">Make Predictions</a>
-                    <a href="/updatePredictions">Change Predictions</a>
-                    <a href="/results">Check Results</a>
-                    <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+                    <a class="button" href="/unlink/local" class="btn btn-default">Unlink account</a>
+                    <a class="button" href="/leaderboard">Check Leaderboard</a>
+                    <a class="button" href="/predictions">Make Predictions</a>
+                    <a class="button" href="/updatePredictions">Change Predictions</a>
+                    <a class="button" href="/results">Check Results</a>
+                    <a class="button" href="/logout" class="btn btn-default btn-sm">Logout</a>
                 <% } else { %>
-                    <a href="/connect/local" class="btn btn-default">Connect Local</a>
+                    <a class="button" href="/connect/local" class="btn btn-default">Connect Local</a>
                 <% } %>
 
             </div>

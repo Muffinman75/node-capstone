@@ -205,39 +205,6 @@ module.exports = function(router) {
         .catch(err => res.status(500).json({ message: 'Cannot display predictions page' }));
     });
 
-    router.get('/updatePredictions', isLoggedIn, function(req,res) {
-        requestPromise({
-            'method'  : 'GET',
-            'uri'     : 'https://football-data.org/v2/competitions/PL/matches',
-            'json'    : true,
-            'headers' : {
-                'X-Auth-Token' : configAuth.footballToken
-            },
-            'rejectUnauthorized': false
-        })
-        .then(data => {
-            if (!data) {
-                const message = ('No Footy Data');
-                console.error(message);
-                return res.status(404).send(message);
-            }
-            const matchday = data.matches[0].season.currentMatchday;
-            Predictions.find({ matchDay : matchday, user_id : req.user._id }, function(err,prediction) {
-                if (!err) {
-                    if (prediction.length) {
-                        // render out the users predictions
-                        res.render('game-pages/update-predictions', {
-                            data : data, prediction : prediction[0]
-                        });
-                    } else {
-                        res.redirect('/predictions');
-                    }
-                }
-            });
-        })
-        .catch(err => res.status(500).json({ message: 'Cannot display predictions page' }));
-    });
-
 
     router.post('/predictions', isLoggedIn, function(req, res) {
         requestPromise({
@@ -282,6 +249,41 @@ module.exports = function(router) {
         })
         .catch(err => res.status(500).json({ message: 'Cannot display predictions page' }));
     });
+    
+
+    router.get('/updatePredictions', isLoggedIn, function(req,res) {
+        requestPromise({
+            'method'  : 'GET',
+            'uri'     : 'https://football-data.org/v2/competitions/PL/matches',
+            'json'    : true,
+            'headers' : {
+                'X-Auth-Token' : configAuth.footballToken
+            },
+            'rejectUnauthorized': false
+        })
+        .then(data => {
+            if (!data) {
+                const message = ('No Footy Data');
+                console.error(message);
+                return res.status(404).send(message);
+            }
+            const matchday = data.matches[0].season.currentMatchday;
+            Predictions.find({ matchDay : matchday, user_id : req.user._id }, function(err,prediction) {
+                if (!err) {
+                    if (prediction.length) {
+                        // render out the users predictions
+                        res.render('game-pages/update-predictions', {
+                            data : data, prediction : prediction[0]
+                        });
+                    } else {
+                        res.redirect('/predictions');
+                    }
+                }
+            });
+        })
+        .catch(err => res.status(500).json({ message: 'Cannot display predictions page' }));
+    });
+
 
     router.post('/update-predictions', isLoggedIn, function(req, res) {
         requestPromise({
