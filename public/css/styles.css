@@ -177,7 +177,7 @@ button {
   overflow: hidden;
 } */
 
-input[type="radio"] {
+/* input[type="radio"] {
   display: none;
 }
 input[type="radio"]:checked + .box {
@@ -185,7 +185,7 @@ input[type="radio"]:checked + .box {
 }
 input[type="radio"]:checked + .box span {
   color: white;
-  /* transform: translateY(70px); */
+  /* transform: translateY(70px); 
 }
 input[type="radio"]:checked + .box span:before {
   transform: translateY(0px);
@@ -241,7 +241,7 @@ input[type="radio"]:checked + .box span:before {
   content: '\f0e7';
   font-family: FontAwesome;
   color: yellow;
-}
+} */
 
 
 @media screen and (min-width: 991px) {
