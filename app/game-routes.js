@@ -48,6 +48,7 @@ module.exports = function(router) {
                         if (data.matches[j].matchDay == matchday) {
                             fixture = search(data.matches[j].homeTeam.name, data.matches[j].awayTeam.name, predictions[i].fixtures);
                             if (data.matches[j].score.winner == predictions[i].fixtures[fixture].prediction) {
+                                debugger
                                 predictions[i].fixtures[fixture].winner = data.matches[j].score.winner; // HOME_TEAM, AWAY_TEAM, DRAW
                                 predictions[i].fixtures[fixture].result = 1;
                                 predictions[i].save();
@@ -228,7 +229,8 @@ module.exports = function(router) {
                     fixtures.push({
                         home_team  : req.body["fixtureHome_" + (i + 1)],
                         away_team  : req.body["fixtureAway_" + (i + 1)],
-                        prediction : req.body["fixture_" + (i + 1)]
+                        prediction : req.body["fixture_" + (i + 1)],
+                        result     : 0
                     });
                 }
                 Predictions.create({
@@ -249,7 +251,7 @@ module.exports = function(router) {
         })
         .catch(err => res.status(500).json({ message: 'Cannot display predictions page' }));
     });
-    
+
 
     router.get('/updatePredictions', isLoggedIn, function(req,res) {
         requestPromise({

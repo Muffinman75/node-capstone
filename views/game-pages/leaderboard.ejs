@@ -9,19 +9,19 @@
 
     <% include ../partials/header %>
 
-        <h2>LEADERBOARD</h2>
+        <h2 aria-label="string">LEADERBOARD</h2>
 
         <table>
 
             <tr>
-                <th class="thin-col">Pos</th>
-                <th>Name</th>
-                <th class="thin-col">Pts</th>
+                <th role="columnheader" class="thin-col">Pos</th>
+                <th role="columnheader">Name</th>
+                <th role="columnheader" class="thin-col">Pts</th>
             </tr>
 
             <% for (let i = 0; i < data.length; i++) { %>
 
-            <tr>
+            <tr role="row" aria-live="polite">
                 <td class="thin-col"><%= i+1 %></td>
                 <td><%= data[i][1].local.userName %></td>
                 <td class="thin-col"><%= data[i][1].points %></td>

@@ -16,18 +16,18 @@
         <form method="post" action="/update-predictions">
             <input type="hidden" name="matchDay" value="<%=prediction.matchDay%>">
             <fieldset>
-                <legend><h2>PREDICTIONS</h2></legend>
+                <legend><h2 aria-label="string">PREDICTIONS</h2></legend>
                 <table>
                     <tr>
-                        <th>Home Win</th>
-                        <th>Draw</th>
-                        <th>Away Win</th>
+                        <th role="columnheader">Home Win</th>
+                        <th role="columnheader">Draw</th>
+                        <th role="columnheader">Away Win</th>
                     </tr>
 
                     <% for (let i = 0; i < prediction.fixtures.length; i++) { %>
 
-                        <div class="fade">
-                            <tr>
+                        <div class="fade" aria-live="polite">
+                            <tr role="row">
                                 <td><label><input type="radio" name="fixture_<%=i%>" value="HOME_WIN" <%= (prediction.fixtures[i].prediction == "HOME_WIN" ? "checked" : "") %>><div class="box box-1"><span><%= prediction.fixtures[i].home_team %></span></div></label><input type="hidden" name="fixtureHome_<%=i%>" value="<%= prediction.fixtures[i].home_team %>"></td>
                                 <td><div class="box box-2"><span><input value="DRAW" type="radio" name="fixture_<%=i%>" <%= (prediction.fixtures[i].prediction == "DRAW" ? "checked" : "") %>></span></div></td>
                                 <td><label><input type="radio" name="fixture_<%=i%>" value="AWAY_WIN" <%= (prediction.fixtures[i].prediction == "AWAY_WIN" ? "checked" : "") %>><div class="box box-3"><span><%= prediction.fixtures[i].away_team %></span></div></label><input type="hidden" name="fixtureAway_<%=i%>" value="<%= prediction.fixtures[i].away_team %>"></td>

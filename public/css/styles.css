@@ -80,7 +80,7 @@ fieldset {
 
 table {
     font-size: 75%;
-    font-weight: 600;
+    /* font-weight: 300; */
     /* font-family: arial, sans-serif; */
     border-collapse: collapse;
     width: 97%;
@@ -93,7 +93,7 @@ table {
 td, th {
     border: 1px solid #0F5257;
     text-align: center;
-    padding: 8px;
+    padding: 5px;
 }
 
 .thin-col {
@@ -244,10 +244,18 @@ input[type="radio"]:checked + .box span:before {
   color: yellow;
 } */
 
+@media screen and (min-width: 479px) and (max-width: 991px) {
+    table {
+        font-weight: 300;
+        max-width: 70%;
+        font-size: 75%;
+    }
+}
 
 @media screen and (min-width: 991px) {
     table {
-        width: 60%;
+        font-weight: 600;
+        max-width: 35%;
         font-size: 90%;
     }
 }
