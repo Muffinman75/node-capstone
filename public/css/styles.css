@@ -59,9 +59,13 @@ p {
     text-align: center;
 }
 
-p.text-center {
+.text-center {
+    width: 90%;
+    font-family: 'Francois', sans-serif;
     text-align: center;
-    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 900;
 }
 
 .text-center {
