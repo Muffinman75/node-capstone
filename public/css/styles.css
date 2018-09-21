@@ -75,6 +75,7 @@ table {
     /* font-family: arial, sans-serif; */
     border-collapse: collapse;
     width: 97%;
+    border-radius: 5px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 25px;
@@ -82,7 +83,6 @@ table {
 
 td, th {
     border: 1px solid #0F5257;
-    border-radius: 10px;
     text-align: center;
     padding: 8px;
 }
