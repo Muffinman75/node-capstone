@@ -79,7 +79,8 @@ fieldset {
 }
 
 table {
-    font-size: 60%;
+    font-size: 75%;
+    font-weight: 600;
     /* font-family: arial, sans-serif; */
     border-collapse: collapse;
     width: 97%;
@@ -185,7 +186,7 @@ input[type="radio"]:checked + .box {
 }
 input[type="radio"]:checked + .box span {
   color: white;
-  /* transform: translateY(70px); 
+  /* transform: translateY(70px);
 }
 input[type="radio"]:checked + .box span:before {
   transform: translateY(0px);
