@@ -18,7 +18,7 @@ input[type=text] {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 25px;
+    margin-top: 50px;
     margin-bottom: 50px;
     border: none;
     border-bottom: 3px solid #0F5257;
@@ -96,13 +96,13 @@ tr:nth-child(even) {
     background-color: #0F5257;
 }
 
-/* .fas {
+.far {
     color: #FFFFFA;
     float: right;
     display: block;
     padding-top: 10px;
     padding-right: 10px;
-} */
+}
 
 .navbar-header {
     color: #FFFFFA;
