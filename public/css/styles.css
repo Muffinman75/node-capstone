@@ -24,10 +24,14 @@ input[type=text] {
     border-bottom: 3px solid #0F5257;
 }
 
-label {
+input[type=password] {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border: none;
+    border-bottom: 3px solid #0F5257;
 }
 
 .btn {
@@ -167,7 +171,7 @@ button {
 /* html {
   background-color: #1a1a1a;
   overflow: hidden;
-}
+} */
 
 input[type="radio"] {
   display: none;
@@ -177,7 +181,7 @@ input[type="radio"]:checked + .box {
 }
 input[type="radio"]:checked + .box span {
   color: white;
-  transform: translateY(70px);
+  /* transform: translateY(70px); */
 }
 input[type="radio"]:checked + .box span:before {
   transform: translateY(0px);
@@ -233,7 +237,7 @@ input[type="radio"]:checked + .box span:before {
   content: '\f0e7';
   font-family: FontAwesome;
   color: yellow;
-} */
+}
 
 
 @media screen and (min-width: 991px) {
