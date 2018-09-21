@@ -12,8 +12,6 @@
 
         <div class="col-sm-6 col-sm-offset-3">
 
-            <h1><span class="fa fa-sign-in"></span> Login</h1>
-
             <!-- show any messages that come back with authentication -->
             <% if (message.length > 0) { %>
                 <div class="alert alert-danger"><%= message %></div>
@@ -21,20 +19,19 @@
 
 
             <!-- LOGIN FORM -->
-            <form action="/login" method="post">
+            <form class="login-signup" action="/login" method="post">
                 <div class="form-group">
-                    <label>Username</label>
+                    <label class="login-signup-label">Username</label>
                     <input type="text" class="form-control" name="userName" value="Muffinman">
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
+                    <label class="login-signup-label">Password</label>
                     <input type="password" class="form-control" name="password" value="1234">
                 </div>
 
                 <button type="submit" class="btn btn-warning btn-lg">Login</button>
             </form>
 
-            <hr>
 
             <p>Need an account? <a class="button" href="/signup">Signup</a></p>
             <p>Or go <a class="button" href="/">Home</a></p>
