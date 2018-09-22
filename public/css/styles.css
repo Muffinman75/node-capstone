@@ -242,6 +242,10 @@ a.button {
     transition-timing-function: ease-in-out;
 }
 
+label:hover, input:hover {
+  cursor: pointer;
+}
+
 a {
     margin-left: auto;
     margin-right: auto;
