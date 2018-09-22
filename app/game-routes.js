@@ -52,6 +52,7 @@ module.exports = function(router) {
                                 predictions[i].fixtures[fixture].winner = data.matches[j].score.winner; // HOME_TEAM, AWAY_TEAM, DRAW
                                 predictions[i].fixtures[fixture].result = 1;
                                 predictions[i].save();
+                                console.log(predictions[i]);
                             }
                         }
                     }
