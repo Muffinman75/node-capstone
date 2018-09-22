@@ -13,6 +13,8 @@
 
         <h2 aria-label="string">RESULTS</h2>
 
+        <h3>Matchday : <%= data.matches[0].season.currentMatchday - 1 %></h3>
+
         <table style="width:100%" method="get" action="/matchday-results">
         <input type="hidden" name="matchDay" value="<%=data.matches[0].season.currentMatchday - 1%>">
             <tr>

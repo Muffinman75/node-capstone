@@ -97,7 +97,7 @@ input[type=password] {
 h1, h2, h3 {
     font-family: 'Francois One', sans-serif;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 65px;
     margin-bottom: 25px;
 }
 
@@ -186,6 +186,46 @@ footer {
 }
 
 a.button {
+    font-family: 'Baloo', sans-serif;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    width: 90%;
+    background-color: #FFFFFA;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 25px;
+    border: 5px;
+    border-radius: 5px;
+    border-color: #004080;
+    color: #0B3142;
+    transition-property: color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+.login-link {
+    font-family: 'Baloo', sans-serif;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    width: 90%;
+    background-color: #FFFFFA;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 25px;
+    border: 5px;
+    border-radius: 5px;
+    border-color: #004080;
+    color: #0B3142;
+    transition-property: color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+.signup-link {
+    font-family: 'Baloo', sans-serif;
+    display: block;
     text-decoration: none;
     text-align: center;
     width: 90%;
@@ -238,10 +278,20 @@ button {
         font-size: 75%;
     }
     a.button {
-        margin-left: auto;
-        margin-right: auto;
-        width: 250px;
+        margin-top: 10px;
+        margin-bottom: 85px;
+        margin-left: 10%;
+        margin-right: 5%;
+        width: 150px;
         display: inline-block;
+    }
+    .signup-link {
+        text-align: center;
+        width: 15%;
+    }
+    .login-link {
+        text-align: center;
+        width: 15%;
     }
 }
 
@@ -252,10 +302,19 @@ button {
         font-size: 90%;
     }
     a.button {
-        margin-top: 60px;
-        margin-left: auto;
-        margin-right: auto;
+        margin-top: 10px;
+        margin-bottom: 85px;
+        margin-left: 10%;
+        margin-right: 5%;
         width: 250px;
         display: inline-block;
+    }
+    .signup-link {
+        text-align: center;
+        width: 15%;
+    }
+    .login-link {
+        text-align: center;
+        width: 15%;
     }
 }
