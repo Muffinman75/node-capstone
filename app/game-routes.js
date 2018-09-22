@@ -33,7 +33,8 @@ module.exports = function(router) {
                 return res.status(404).send(message);
             }
             // get the matchDay from the API
-            const matchday = data.matches[0].season.currentMatchday;
+            let matchday = data.matches[0].season.currentMatchday;
+            //matchday = 5;
             let numberofPredictions = 0;
             let completedPredictions = 0;
             // go grab all Predictions for this matchDay
@@ -42,20 +43,22 @@ module.exports = function(router) {
                 //console.log('predictions calc:', predictions)
                 // loop through all predictions
                 numberofPredictions = predictions.length;
-                console.log('found predictions,', numberofPredictions);
+                //console.log('found predictions,', numberofPredictions);
+                //console.log('number of matches',data.matches.length);
+
                 for (let i = 0; i < predictions.length; i++) {
                     for (let j = 0; j < data.matches.length; j++) {
-                        if (data.matches[j].matchDay == matchday) {
+                        if (data.matches[j].matchday == matchday) {
                             fixture = search(data.matches[j].homeTeam.name, data.matches[j].awayTeam.name, predictions[i].fixtures);
-                            if (data.matches[j].score.winner == predictions[i].fixtures[fixture].prediction) {
+                            predictions[i].fixtures[fixture].winner = data.matches[j].score.winner;
+                            if (data.matches[j].score.winner.replace("_TEAM","") == predictions[i].fixtures[fixture].prediction.replace("_WIN","")) {
                                 debugger
-                                predictions[i].fixtures[fixture].winner = data.matches[j].score.winner; // HOME_TEAM, AWAY_TEAM, DRAW
                                 predictions[i].fixtures[fixture].result = 1;
-                                predictions[i].save();
-                                console.log(predictions[i]);
                             }
                         }
                     }
+                    predictions[i].save();
+                    //console.log(predictions[i]);
                     checkComplete();
                 }
             });
@@ -121,7 +124,7 @@ module.exports = function(router) {
                     for (let j = 0; j < predictions[i].fixtures.length; j++) {
                         // aggregating all the points in the result property for each userId
                         userPoints[predictions[i].user_id] += predictions[i].fixtures[j].result;
-                        console.log(userPoints);
+                        //console.log(userPoints);
                     }
                 }
                 users1.forEach(function(user) {
@@ -142,20 +145,10 @@ module.exports = function(router) {
     // LEADERBOARD PAGE
     // =========================
     router.get('/leaderboard', isLoggedIn, function(req, res) {
-        user.find({}).exec()
+        user.find({}).sort('-points').exec()
         .then(function(users) {
-            let sortable = [];
-    	    for (let key in users) {
-    		    if (users.hasOwnProperty(key)) {
-    			    sortable.push([key, users[key]]); // each item is an array in format [key, value]
-                }
-            }
-    	     // sort items by value
-             console.log('user array: ', sortable);
-    	    sortable.sort(function(a, b) {
-    	        return a[1]-b[1]; // compare numbers
-    	    });
-    	    res.render('game-pages/leaderboard', { data : sortable }); // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
+            console.log(users);
+    	    res.render('game-pages/leaderboard', { data : users }); // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
         });
     });
     //     /*

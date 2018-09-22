@@ -23,20 +23,13 @@
 
             <tr role="row" aria-live="polite">
                 <td class="thin-col"><%= i+1 %></td>
-                <td><%= data[i][1].local.userName %></td>
-                <td class="thin-col"><%= data[i][1].points %></td>
+                <td><%= data[i].local.userName %></td>
+                <td class="thin-col"><%= data[i].points %></td>
             </tr>
 
             <% } %>
 
         </table>
-
-        <br>
-        <br>
-        <a class="button" href="/predictions">Make Predictions</a>
-        <a class="button" href="/results">Check Results</a>
-        <a class="button" href="/updatePredictions">Change Predictions</a>
-        <a class="button" href="/profile">Home Page</a>
 
         <% include ../partials/footer %>
 

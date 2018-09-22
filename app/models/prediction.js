@@ -12,7 +12,7 @@ const predictionSchema = mongoose.Schema({
             home_team    : String, // Arsenal
             away_team    : String, // Totty
             prediction   : String, // HOME_WIN, AWAY, DRAW
-            winner       : String,
+            winner       : { type : String, default : ""},
             result       : { type : Number, default : 0} // 0 = incorrect, 1 = correct
         } ]
 

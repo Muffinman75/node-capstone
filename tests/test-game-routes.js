@@ -1,6 +1,3 @@
-
-<<<<<<< Updated upstream
-=======
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const faker = require('faker');
@@ -60,4 +57,3 @@ describe('Predictions API resource', function() {
     after(function() {
         return closeServer();
     });
->>>>>>> Stashed changes

@@ -1,13 +1,22 @@
 <!-- views/partials/header.ejs -->
 
 <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
 
         <div class="navbar-header">
-                <i class="far fas fa-futbol fa-2x"></i>
-                <h1 class="header" role="heading">EPL Predictor Game</h1>
+
+                <div class="dropdown">
+                  <i class="dropbtn far fas fa-futbol fa-3x"></i>
+                  <div class="dropdown-content">
+                      <a class="" href="/leaderboard">Check Leaderboard</a>
+                      <a class="" href="/predictions">Make Predictions</a>
+                      <a class="" href="/updatePredictions">Change Predictions</a>
+                      <a class="" href="/results">Check Results</a>
+                      <a class="" href="/logout">Logout</a>
+                  </div>
+                </div>
+
+                <h1 class="header" role="heading"><a class="header-link" href="/profile">EPL Predictor Game</a></h1>
 
         </div>
 
-    </div>
 </nav>
