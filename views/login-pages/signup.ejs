@@ -12,11 +12,6 @@
 
         <div class="col-sm-6 col-sm-offset-3">
 
-            <!-- show any messages that come back with authentication -->
-            <% if (message.length > 0) { %>
-                <div class="alert alert-danger"><%= message %></div>
-            <% } %>
-
             <!-- LOGIN FORM -->
             <form class="login-signup" action="/signup" method="post">
                 <div class="form-group">
@@ -33,6 +28,10 @@
 
             <p aria-label="string">Already have an account?</p>
             <a class="login-link" href="/login">Login</a>
+
+            <% if (message.length > 0) { %>
+                <div class="alert alert-danger"><%= message %></div>
+            <% } %>
 
         </div>
 
