@@ -268,9 +268,7 @@ module.exports = function(router) {
                 if (!err) {
                     if (prediction.length) {
                         // render out the users predictions
-                        res.render('game-pages/update-predictions', {
-                            data : data, prediction : prediction[0]
-                        });
+                        res.render('game-pages/update-predictions', { data : data, prediction : prediction[0] });
                     } else {
                         res.redirect('/predictions');
                     }
