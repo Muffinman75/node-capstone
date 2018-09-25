@@ -4,7 +4,7 @@
 
 body {
    background-image: url(https://img.gossipper.com/hsi/aHR0cHM6Ly9zMy1ldS1jZW50cmFsLTEuYW1hem9uYXdzLmNvbS9jZW50YXVyLXdwL2NyZWF0aXZlcmV2aWV3L3Byb2QvY29udGVudC91cGxvYWRzLzIwMTYvMDIvUHJlbWllcl9MZWFndWVfUmVicmFuZHNfRGVzaWduU3R1ZGlvXzAzLmpwZw==/images/Premier_League_Rebrands_DesignStudio_03.jpg);
-   background-repeat: no-repeat;
+   /* background-repeat: no-repeat; */
    background-size: cover;
    background-position: top center;
 }
