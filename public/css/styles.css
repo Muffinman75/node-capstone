@@ -3,10 +3,14 @@
 }
 
 body {
-    background-color: #FFFFFA;
+   background-image: url(https://img.gossipper.com/hsi/aHR0cHM6Ly9zMy1ldS1jZW50cmFsLTEuYW1hem9uYXdzLmNvbS9jZW50YXVyLXdwL2NyZWF0aXZlcmV2aWV3L3Byb2QvY29udGVudC91cGxvYWRzLzIwMTYvMDIvUHJlbWllcl9MZWFndWVfUmVicmFuZHNfRGVzaWduU3R1ZGlvXzAzLmpwZw==/images/Premier_League_Rebrands_DesignStudio_03.jpg);
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: top center;
 }
 
 .header {
+    background-color: #004080;
     color: #FFFFFA;
     font-family: 'Francois One', sans-serif;
     margin: 0;
@@ -18,6 +22,11 @@ body {
     color: #b80c09;
     text-align: center;
     font-weight: 900;
+}
+
+.blurb {
+    font-family: 'Francois One', sans-serif;
+    font-weight: 400;
 }
 
 .dropbtn {
@@ -71,7 +80,8 @@ input[type=text] {
     margin-top: 80px;
     margin-bottom: 50px;
     border: none;
-    border-bottom: 3px solid #0F5257;
+    border-bottom: 3px solid #004080;
+    padding: 5px;
 }
 
 input[type=password] {
@@ -81,7 +91,8 @@ input[type=password] {
     margin-top: 80px;
     margin-bottom: 50px;
     border: none;
-    border-bottom: 3px solid #0F5257;
+    border-bottom: 3px solid #004080;
+    padding: 5px;
 }
 
 .header-link {
@@ -94,16 +105,33 @@ input[type=password] {
     margin-left: 10px;
 }
 
+.success-container {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255,255,255,0.8);
+    width: 80%;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 .success {
     text-align: center;
     margin-bottom: 20px;
+    padding: 7px;
+}
+
+.sub-nav {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1, h2, h3 {
     font-family: 'Francois One', sans-serif;
     text-align: center;
-    margin-top: 65px;
-    margin-bottom: 25px;
+    /* margin-top: 45px; */
+    /* margin-bottom: 25px; */
 }
 
 legend {
@@ -117,14 +145,17 @@ p {
 }
 
 .text-center {
-    width: 90%;
-    font-family: 'Francois', sans-serif;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    font-weight: 900;
-    margin-top: 75px;
-    margin-bottom: 75px;
+   width: 50%;
+   font-family: 'Baloo', sans-serif;
+   text-align: center;
+   margin-left: auto;
+   margin-right: auto;
+   font-weight: 900;
+   margin-top: 75px;
+   margin-bottom: 75px;
+   background-color: rgba(255,255,255,0.8);
+   border-radius: 10px;
+   padding: 50px;
 }
 
 fieldset {
@@ -136,17 +167,18 @@ table {
     font-size: 75%;
     /* font-weight: 300; */
     /* font-family: arial, sans-serif; */
-    border-collapse: collapse;
-    width: 97%;
+    background-color: rgba(255,255,255,0.8);
+    width: 90%;
     border-radius: 5px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 25px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+    border-spacing: 0;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.7);
 }
 
 td, th {
-    border: 1px solid #0F5257;
+    border: 1px solid #004080;
     text-align: center;
     padding: 5px;
 }
@@ -157,7 +189,23 @@ td, th {
 
 tr:nth-child(even) {
     color: #FFFFFA;
-    background-color: #0F5257;
+    background-color: #004080;
+}
+
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 5px;
+}
+
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 5px;
+}
+
+table tr:first-child th:first-child {
+    border-top-left-radius: 5px;
+}
+
+table tr:first-child th:last-child {
+    border-top-right-radius: 5px;
 }
 
 .far {
@@ -165,10 +213,14 @@ tr:nth-child(even) {
     position: relative;
     left: 30px;
     top: -15px;
-    padding-top: 10px;
+    /* padding-top: 10px;
     padding-left: 10px;
-    /* padding-right: 10px; */
-    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px; */
+}
+
+i.profile {
+    padding: 15px;
 }
 
 .navbar-header {
@@ -179,16 +231,12 @@ tr:nth-child(even) {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
-footer {
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 10px;
-    left: 20px;
-}
-
 .footy-link {
     color: black;
+    display: block;
+    font-size: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 a.button {
@@ -198,24 +246,32 @@ a.button {
     text-align: center;
     width: 90%;
     background-color: #FFFFFA;
+    color: #004080;
     font-weight: bold;
     margin-bottom: 20px;
     font-size: 25px;
-    border: 5px;
+    border: 2px solid #004080;
     border-radius: 5px;
-    border-color: #004080;
-    color: #0B3142;
+    padding: 10px;
     transition-property: color;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
 }
+
+/* a.button {
+   margin-top: 10px;
+   margin-bottom: 85px;
+   margin-left: 10%;
+   margin-right: 5%;
+   width: 250px;
+} */
 
 .login-link {
     font-family: 'Baloo', sans-serif;
     display: block;
     text-decoration: none;
     text-align: center;
-    width: 90%;
+    width: 60%;
     background-color: #FFFFFA;
     font-weight: bold;
     margin-bottom: 20px;
@@ -227,6 +283,8 @@ a.button {
     transition-property: color;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
+    padding: 8px;
+    border: 2px solid #004080;
 }
 
 .signup-link {
@@ -234,7 +292,7 @@ a.button {
     display: block;
     text-decoration: none;
     text-align: center;
-    width: 90%;
+    width: 60%;
     background-color: #FFFFFA;
     font-weight: bold;
     margin-bottom: 20px;
@@ -246,6 +304,8 @@ a.button {
     transition-property: color;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
+    padding: 8px;
+    border: 2px solid #004080;
 }
 
 label:hover, input:hover {
@@ -262,7 +322,7 @@ button {
   width: 175px;
   height: 40px;
   color: #FFFFFA;
-  background-color: #0F5257;
+  background-color: #004080;
   border-style: none;
   text-transform: uppercase;
   cursor: pointer;
@@ -290,14 +350,15 @@ button {
     a.button {
         margin-top: 10px;
         margin-bottom: 85px;
-        margin-left: 10%;
-        margin-right: 5%;
-        width: 150px;
+        margin-left: 9%;
+        margin-right: 4%;
+        width: 35%;
         display: inline-block;
+        vertical-align: top;
     }
     .signup-link {
         text-align: center;
-        width: 15%;
+        width: 19.8%;
     }
     .login-link {
         text-align: center;
@@ -333,6 +394,24 @@ button {
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
+    }
+    .subnav {
+        max-width: 80%;
+    }
+    .success-container {
+        max-width: 50%;
+    }
+    .blurb {
+        font-family: 'Francois One', sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+    }
+    .footy-link {
+        color: black;
+        display: block;
+        font-size: 15px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -347,8 +426,9 @@ button {
         margin-bottom: 85px;
         margin-left: 10%;
         margin-right: 5%;
-        width: 250px;
+        width: 32%;
         display: inline-block;
+        vertical-align: top;
     }
     .signup-link {
         text-align: center;
@@ -388,5 +468,23 @@ button {
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
+    }
+    .sub-nav {
+        max-width: 70%;
+    }
+    .success-container {
+        max-width: 40%;
+    }
+    .blurb {
+        font-family: 'Francois One', sans-serif;
+        font-weight: 400;
+        font-size: 25px;
+    }
+    .footy-link {
+        color: black;
+        display: block;
+        font-size: 18px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }

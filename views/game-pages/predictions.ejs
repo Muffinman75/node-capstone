@@ -13,8 +13,14 @@
         <form method="post" action="/predictions">
             <input type="hidden" name="matchDay" value="<%=data[0].season.currentMatchday%>">
             <fieldset>
-                <legend><h2 aria-label="string">PREDICTIONS</h2></legend>
-                <h3>Matchday : <%= data[0].season.currentMatchday %></h3>
+
+                <div class="success-container">
+
+                    <legend><h2 aria-label="string">PREDICTIONS</h2></legend>
+                    <h3>Matchday : <%= data[0].season.currentMatchday %></h3>
+
+                </div>
+
                 <table>
                     <tr>
                         <th role="columnheader">Home Win</th>

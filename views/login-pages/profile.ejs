@@ -8,22 +8,19 @@
 
     <% include ../partials/header %>
 
-    <div class="page-header text-center">
+    <div class="success-container">
         <h1 aria-label="string">Welcome, <%= user.local.userName %>!</h1>
     </div>
 
-        <p>
-            <strong>Points </strong>: <%= user.points %>
-        </p>
+        <nav class="sub-nav">
 
-        <a class="button" href="/leaderboard">Check Leaderboard</a>
-        <a class="button" href="/predictions">Make Predictions</a>
-        <a class="button" href="/updatePredictions">Change Predictions</a>
-        <a class="button" href="/results">Check Results</a>
-        <a class="button" href="/logout">Logout</a>
+            <a class="button" href="/leaderboard">Check Leaderboard<i class="profile fas fa-trophy fa-3x"></i></a>
+            <a class="button" href="/predictions">Make Predictions<i class="profile fas fa-lightbulb fa-3x"></i></a>
+            <a class="button" href="/updatePredictions">Change Predictions<i class="profile fas fa-edit fa-3x"></i></a>
+            <a class="button" href="/results">Check Results<i class="profile fas fa-eye fa-3x"></i></a>
 
-        <br>
-        <br>
+        </nav>
+
         <% include ../partials/footer %>
 
 </body>

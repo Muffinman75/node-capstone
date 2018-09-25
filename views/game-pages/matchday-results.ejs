@@ -11,12 +11,16 @@
 
         <% include ../partials/header %>
 
-        <h2 aria-label="string">RESULTS</h2>
+        <div class="success-container">
 
-        <h3>Matchday : <%= data.matches[0].season.currentMatchday - 1 %></h3>
+            <h2 aria-label="string">RESULTS</h2>
+            <h3>Matchday : <%= data.matches[0].season.currentMatchday - 1 %></h3>
 
-        <table style="width:100%" method="get" action="/matchday-results">
-        <input type="hidden" name="matchDay" value="<%=data.matches[0].season.currentMatchday - 1%>">
+        </div>
+
+            <table method="get" action="/matchday-results">
+            <input type="hidden" name="matchDay" value="<%=data.matches[0].season.currentMatchday - 1%>">
+
             <tr>
                 <th role="columnheader">Home</th>
                 <th role="columnheader">Score</th>
