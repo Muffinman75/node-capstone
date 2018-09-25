@@ -2,11 +2,12 @@
     box-sizing: border-box;
 }
 
-body {
-   background: url(https://s3.amazonaws.com/nikeinc/assets/71540/Tottenham_Hotspur_-_Away_-_Group_Image_hd_1600.jpg?1498751667) no-repeat fixed;
-   /* background-repeat: no-repeat; */
-   background-size: cover;
-   background-position: top center;
+html {
+    background: url(https://s3.amazonaws.com/nikeinc/assets/71540/Tottenham_Hotspur_-_Away_-_Group_Image_hd_1600.jpg?1498751667) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .header {
@@ -170,7 +171,7 @@ fieldset {
 
 table {
     font-size: 75%;
-    font-weight: 900;
+    font-weight: 600;
     /* font-family: arial, sans-serif; */
     background-color: rgba(255,255,255,0.8);
     width: 90%;
