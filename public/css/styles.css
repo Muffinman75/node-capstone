@@ -10,7 +10,6 @@ body {
     color: #FFFFFA;
     font-family: 'Francois One', sans-serif;
     margin: 0;
-    padding-top: 7px;
     padding-left: 7px;
     text-align: left;
 }
@@ -28,19 +27,19 @@ body {
 }
 
 .dropdown {
-    width: 50px;
+    width: 100px;
     height: 90px;
     float: right;
     top: 50px;
-    right: 135px;
     position: relative;
     display: block;
+    cursor: pointer;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
-    left: 25px;
+    left: -45px;
     top: 90px;
     background-color: #f9f9f9;
     min-width: 160px;
@@ -90,9 +89,9 @@ input[type=password] {
     color: #FFFFFA;
     text-decoration: none;
     display: block;
-    width: 240px;
-    margin-left: 20px;
-    margin-top: 50px;
+    width: 200px;
+    height: 100px;
+    margin-left: 10px;
 }
 
 .success {
@@ -143,6 +142,7 @@ table {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 25px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 td, th {
@@ -163,20 +163,20 @@ tr:nth-child(even) {
 .far {
     color: #FFFFFA;
     position: relative;
-    display: block;
-    left: 120px;
-    top: 30px;
+    left: 30px;
+    top: -15px;
     padding-top: 10px;
-    padding-left: 6px;
-    padding-right: 10px;
+    padding-left: 10px;
+    /* padding-right: 10px; */
     padding-bottom: 10px;
 }
 
 .navbar-header {
-    height: 150px;
+    height: 140px;
     color: #FFFFFA;
     background-color: #004080;
     margin-top: 0;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
 footer {
@@ -303,6 +303,37 @@ button {
         text-align: center;
         width: 15%;
     }
+    .navbar-header {
+        height: 100px;
+    }
+    .dropdown {
+        width: 200px;
+        height: 90px;
+        float: right;
+        top: 50px;
+        position: relative;
+        display: block;
+    }
+    .far {
+        color: #FFFFFA;
+        position: relative;
+        left: 125px;
+        top: -35px;
+        padding-top: 10px;
+        padding-left: 10px;
+        /* padding-right: 10px; */
+        padding-bottom: 10px;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        left: 10px;
+        top: 50px;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
 }
 
 @media screen and (min-width: 991px) {
@@ -326,5 +357,36 @@ button {
     .login-link {
         text-align: center;
         width: 15%;
+    }
+    .navbar-header {
+        height: 100px;
+    }
+    .dropdown {
+        width: 200px;
+        height: 90px;
+        float: right;
+        top: 50px;
+        position: relative;
+        display: block;
+    }
+    .far {
+        color: #FFFFFA;
+        position: relative;
+        left: 125px;
+        top: -35px;
+        padding-top: 10px;
+        padding-left: 10px;
+        /* padding-right: 10px; */
+        padding-bottom: 10px;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        left: 10px;
+        top: 50px;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
     }
 }
