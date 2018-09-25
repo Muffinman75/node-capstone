@@ -27,6 +27,7 @@ body {
 .blurb {
     font-family: 'Francois One', sans-serif;
     font-weight: 400;
+    font-size: 22px;
 }
 
 .container {
@@ -243,6 +244,10 @@ i.profile {
     margin-right: auto;
 }
 
+a.footy-link {
+    width: 30%;
+}
+
 a.button {
     font-family: 'Baloo', sans-serif;
     display: block;
@@ -417,6 +422,9 @@ button {
         margin-left: auto;
         margin-right: auto;
     }
+    a.footy-link {
+        width: 25%;
+    }
 }
 
 @media screen and (min-width: 991px) {
@@ -490,5 +498,8 @@ button {
         font-size: 18px;
         margin-left: auto;
         margin-right: auto;
+    }
+    a.footy-link {
+        width: 20%;
     }
 }
