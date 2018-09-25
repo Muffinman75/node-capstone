@@ -29,6 +29,10 @@ body {
     font-weight: 400;
 }
 
+.container {
+    height: 75%;
+}
+
 .dropbtn {
     border: none;
     cursor: pointer;
