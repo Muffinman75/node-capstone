@@ -9,7 +9,7 @@ html {
     -o-background-size: cover;
     background-size: cover;
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .header {
@@ -236,7 +236,7 @@ i.profile {
     color: #FFFFFA;
     background-color: #004080;
     margin-top: 0;
-    margin-bottom: 200px;
+    margin-bottom: 25%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
@@ -350,6 +350,7 @@ button {
   transition-property: color, #29E7CD;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
+  border: 2px solid #FFFFFA;
 }
 
 
