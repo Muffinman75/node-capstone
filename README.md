@@ -6,6 +6,8 @@ the limitations of the free tier of the football-data.org api. As a result of th
 updated when the results are updated by football-data.org.
 Landing Page
 
+Screens coming soon 
+
 
 This is a football(soccer) prediction game where the user will guess  who will win the match or whether it is a 
 raw and gain a point for a correct guess. The user will signup, login with unique  user credentials and should 
