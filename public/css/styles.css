@@ -32,7 +32,7 @@ html {
 }
 
 .container {
-    height: 75%;
+    /* height: 75%; */
 }
 
 .dropbtn {
@@ -234,6 +234,7 @@ i.profile {
     color: #FFFFFA;
     background-color: #004080;
     margin-top: 0;
+    margin-bottom: 200px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
 }
 
@@ -376,6 +377,7 @@ button {
     }
     .navbar-header {
         height: 100px;
+        margin-bottom: 100px;
     }
     .dropdown {
         width: 200px;
@@ -453,6 +455,7 @@ button {
     }
     .navbar-header {
         height: 100px;
+        margin-bottom: 50px;
     }
     .dropdown {
         width: 200px;
