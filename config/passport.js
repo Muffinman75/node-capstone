@@ -17,7 +17,7 @@ module.exports = function(passport) {
     // passport session setup ==================================================
     // =========================================================================
 
-    // used to serialize the user for the session
+    // used to 
     passport.serializeUser(function(user, done) {
         done(null, user.id);
     });

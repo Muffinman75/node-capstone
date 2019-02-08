@@ -1,3 +1,3 @@
 module.exports = {
-    'url' : 'mongodb://muffinman:muffinman75@ds135952.mlab.com:35952/node-capstone'
+  url: "mongodb://Muffinman:Muffinman75@ds253353.mlab.com:53353/bristol5s"
 };
