@@ -173,7 +173,7 @@ module.exports = function(router) {
     console.log("here");
     requestPromise({
       method: "GET",
-      uri: "https://football-data.org/v2/competitions/PL/matches",
+      uri: "https://api.football-data.org/v2/competitions/PL/matches",
       json: true,
       headers: {
         "X-Auth-Token": configAuth.footballToken
@@ -187,6 +187,7 @@ module.exports = function(router) {
           return res.status(404).send(message);
         }
         const matchday = data.matches[0].season.currentMatchday;
+        console.log("after set matchday");
         // see if loggedin user already has a predictions
         Predictions.find(
           { matchDay: matchday, user_id: req.user._id },
@@ -219,7 +220,7 @@ module.exports = function(router) {
   router.post("/predictions", isLoggedIn, function(req, res) {
     requestPromise({
       method: "GET",
-      uri: "https://football-data.org/v2/competitions/PL/matches",
+      uri: "https://api.football-data.org/v2/competitions/PL/matches",
       json: true,
       headers: {
         "X-Auth-Token": configAuth.footballToken
@@ -267,7 +268,7 @@ module.exports = function(router) {
   router.get("/updatePredictions", isLoggedIn, function(req, res) {
     requestPromise({
       method: "GET",
-      uri: "https://football-data.org/v2/competitions/PL/matches",
+      uri: "https://api.football-data.org/v2/competitions/PL/matches",
       json: true,
       headers: {
         "X-Auth-Token": configAuth.footballToken
@@ -306,7 +307,7 @@ module.exports = function(router) {
   router.post("/update-predictions", isLoggedIn, function(req, res) {
     requestPromise({
       method: "GET",
-      uri: "https://football-data.org/v2/competitions/PL/matches",
+      uri: "https://api.football-data.org/v2/competitions/PL/matches",
       json: true,
       headers: {
         "X-Auth-Token": configAuth.footballToken
@@ -357,7 +358,7 @@ module.exports = function(router) {
   router.get("/results", function(req, res) {
     requestPromise({
       method: "GET",
-      uri: "https://football-data.org/v2/competitions/PL/matches",
+      uri: "https://api.football-data.org/v2/competitions/PL/matches",
       json: true,
       headers: {
         "X-Auth-Token": configAuth.footballToken
