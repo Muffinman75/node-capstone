@@ -375,7 +375,7 @@ module.exports = function(router) {
         console.log("matchday:", matchday);
         return requestPromise({
           method: "GET",
-          uri: "https://football-data.org/v2/competitions/PL/matches",
+          uri: "https://api.football-data.org/v2/competitions/PL/matches",
           qs: {
             matchday: `${matchday}`
           },
