@@ -16,7 +16,7 @@ module.exports = function(router) {
     console.log("started checking predictions");
     requestPromise({
       method: "GET",
-      uri: "https://football-data.org/v2/competitions/PL/matches",
+      uri: "https://api.football-data.org/v2/competitions/PL/matches",
       json: true,
       headers: {
         "X-Auth-Token": configAuth.footballToken
@@ -40,9 +40,8 @@ module.exports = function(router) {
         //console.log('predictions calc:', predictions)
         // loop through all predictions
         numberofPredictions = predictions.length;
-        //console.log('found predictions,', numberofPredictions);
-        //console.log('number of matches',data.matches.length);
-
+        console.log("found predictions,", numberofPredictions);
+        console.log("number of matches", data.matches.length);
         for (let i = 0; i < predictions.length; i++) {
           for (let j = 0; j < data.matches.length; j++) {
             if (data.matches[j].matchday == matchday) {
