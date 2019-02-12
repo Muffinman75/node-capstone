@@ -32,11 +32,11 @@
             <% for (var i = 0; i < data.matches.length; i++) { %>
 
             <tr role="row" aria-live="polite">
-                <td><%= data.matches[i].homeTeam.name  %></td>
-                <td class="thin-col"><%= data.matches[i].score.fullTime.homeTeam %></td>
+                <td class="tableText"><%= data.matches[i].homeTeam.name  %></td>
+                <td class="tableText thin-col"><%= data.matches[i].score.fullTime.homeTeam %></td>
                 <!-- <td class="thin-col"><%= data.matches[i].score.winner %></td> -->
-                <td><%= data.matches[i].awayTeam.name  %></td>
-                <td class="thin-col"><%= data.matches[i].score.fullTime.awayTeam %></td>
+                <td class="tableText"><%= data.matches[i].awayTeam.name  %></td>
+                <td class="tableText thin-col"><%= data.matches[i].score.fullTime.awayTeam %></td>
             </tr>
 
             <% } %>

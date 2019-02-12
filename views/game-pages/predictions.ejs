@@ -32,12 +32,12 @@
 
                         <div class="fade" aria-live="polite">
                             <tr role="row">
-                                <td><label><input value="HOME_WIN" type="radio" name="fixture_<%=i+1%>" required><div class="box box-1"><span><%= data[i].homeTeam.name %></span></div></label><input type="hidden" name="fixtureHome_<%=i+1%>" value="<%= data[i].homeTeam.name %>"></td>
+                                <td><label><input value="HOME_WIN" type="radio" name="fixture_<%=i+1%>" required><div class="box box-1"><span class="tableText"><%= data[i].homeTeam.name %></span></div></label><input type="hidden" name="fixtureHome_<%=i+1%>" value="<%= data[i].homeTeam.name %>"></td>
 
-                                <td class="thin-col"><div class="box box-2"><span><input value="DRAW" type="radio" name="fixture_<%=i+1%>"></span></div>
+                                <td class="thin-col"><div class="box box-2"><span class="tableText"><input value="DRAW" type="radio" name="fixture_<%=i+1%>"></span></div>
                                 </td>
 
-                                <td><label><div class="box box-3"><span><%= data[i].awayTeam.name %></span></div><input value="AWAY_WIN" type="radio" name="fixture_<%=i+1%>"></label><input type="hidden" name="fixtureAway_<%=i+1%>" value="<%= data[i].awayTeam.name %>"></td>
+                                <td><label><div class="box box-3"><span class="tableText"><%= data[i].awayTeam.name %></span></div><input value="AWAY_WIN" type="radio" name="fixture_<%=i+1%>"></label><input type="hidden" name="fixtureAway_<%=i+1%>" value="<%= data[i].awayTeam.name %>"></td>
                             </tr>
                         </div>
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ class="tableText"<!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
@@ -15,7 +15,7 @@
             <h1>Changed Your Mind?</h1>
             <h2>Change Your Predictions!</h2>
 
-        </div>    
+        </div>
 
         <form method="post" action="/update-predictions">
             <input type="hidden" name="matchDay" value="<%= prediction.matchDay %>">
@@ -39,9 +39,9 @@
 
                         <div class="fade" aria-live="polite">
                             <tr role="row">
-                                <td><label><input type="radio" name="fixture_<%=i%>" value="HOME_WIN" <%= (prediction.fixtures[i].prediction == "HOME_WIN" ? "checked" : "") %>><div class="box box-1"><span><%= prediction.fixtures[i].home_team %></span></div></label><input type="hidden" name="fixtureHome_<%=i%>" value="<%= prediction.fixtures[i].home_team %>"></td>
+                                <td><label><input type="radio" name="fixture_<%=i%>" value="HOME_WIN" <%= (prediction.fixtures[i].prediction == "HOME_WIN" ? "checked" : "") %>><div class="box box-1"><span class="tableText"><%= prediction.fixtures[i].home_team %></span></div></label><input type="hidden" name="fixtureHome_<%=i%>" value="<%= prediction.fixtures[i].home_team %>"></td>
                                 <td><div class="box box-2"><span><input value="DRAW" type="radio" name="fixture_<%=i%>" <%= (prediction.fixtures[i].prediction == "DRAW" ? "checked" : "") %>></span></div></td>
-                                <td><label><input type="radio" name="fixture_<%=i%>" value="AWAY_WIN" <%= (prediction.fixtures[i].prediction == "AWAY_WIN" ? "checked" : "") %>><div class="box box-3"><span><%= prediction.fixtures[i].away_team %></span></div></label><input type="hidden" name="fixtureAway_<%=i%>" value="<%= prediction.fixtures[i].away_team %>"></td>
+                                <td><label><input type="radio" name="fixture_<%=i%>" value="AWAY_WIN" <%= (prediction.fixtures[i].prediction == "AWAY_WIN" ? "checked" : "") %>><div class="box box-3"><span class="tableText"><%= prediction.fixtures[i].away_team %></span></div></label><input type="hidden" name="fixtureAway_<%=i%>" value="<%= prediction.fixtures[i].away_team %>"></td>
                             </tr>
                         </div>
 
