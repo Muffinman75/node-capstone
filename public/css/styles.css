@@ -177,8 +177,8 @@ fieldset {
 }
 
 table {
-  font-size: 75%;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 500;
   /* font-family: arial, sans-serif; */
   background-color: rgba(255, 255, 255, 0.8);
   width: 90%;
@@ -363,8 +363,8 @@ button {
 @media screen and (min-width: 479px) and (max-width: 991px) {
   table {
     /* font-weight: 300; */
-    max-width: 70%;
-    font-size: 75%;
+    /* max-width: 70%; */
+    /* font-size: 75%; */
   }
   a.button {
     margin-top: 10px;
@@ -441,7 +441,7 @@ button {
 @media screen and (min-width: 991px) {
   table {
     font-weight: 600;
-    max-width: 35%;
+    max-width: 80%;
     font-size: 90%;
   }
   a.button {

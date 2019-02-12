@@ -27,13 +27,19 @@ require("./config/passport")(passport); // pass passport for configuration
 // set up the express application
 app.use(morgan("dev")); // log each request to the console
 app.use(cookieParser()); // read cookies (needed for oauth)
-app.use(bodyParser()); // get info from html forms
+app.use(bodyParser.urlencoded({ extended: true })); // get info from html forms
 app.use(express.static("public"));
 app.set("view engine", "ejs"); // set up ejs for templating
 
 // required for passport
 
-app.use(session({ secret: "smellybellystringbean" })); // session secret
+app.use(
+  session({
+    resave: true,
+    saveUninitialized: true,
+    secret: "smellybellystringbean"
+  })
+); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistant login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
