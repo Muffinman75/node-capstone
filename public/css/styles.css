@@ -120,7 +120,7 @@ input[type="password"] {
   margin-left: auto;
   margin-right: auto;
   background-color: rgba(255, 255, 255, 0.8);
-  width: 80%;
+  width: 90%;
   padding: 5px;
   border-radius: 5px;
   margin-top: 30px;
@@ -194,7 +194,8 @@ td,
 th {
   border: 1px solid #004080;
   text-align: center;
-  padding: 5px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 .thin-col {
@@ -376,7 +377,7 @@ button {
   }
   .login-link {
     text-align: center;
-    width: 15%;
+    width: 29%;
   }
   .navbar-header {
     height: 100px;
@@ -414,7 +415,7 @@ button {
     max-width: 80%;
   }
   .success-container {
-    max-width: 50%;
+    max-width: 75%;
   }
   .blurb {
     font-family: "Francois One", sans-serif;
@@ -492,7 +493,7 @@ button {
     max-width: 70%;
   }
   .success-container {
-    max-width: 40%;
+    max-width: 75%;
   }
   .blurb {
     font-family: "Francois One", sans-serif;
