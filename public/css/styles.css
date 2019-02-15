@@ -360,7 +360,7 @@ button {
   border: 2px solid #fffffa;
 }
 
-@media screen and (min-width: 479px) and (max-width: 991px) {
+@media screen and (min-width: 479px) {
   table {
     /* font-weight: 300; */
     /* max-width: 70%; */

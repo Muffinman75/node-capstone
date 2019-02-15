@@ -6,14 +6,13 @@ const parser = require("body-parser");
 const router = express.Router();
 
 const user = require("../app/models/user");
-// const { results }     = require('../app/models/results');
 const { Predictions } = require("../app/models/prediction");
 const configAuth = require("../config/auth");
 
+// Endpoint called from cron job in server.js - to check predictions for each user
+// against the results for the given matchday if they are in.
 module.exports = function(router) {
   router.get("/checkPredictions", function(req, res) {
-    // go out to the API and get the current state of things
-    console.log("started checking predictions");
     requestPromise({
       method: "GET",
       uri: "https://api.football-data.org/v2/competitions/PL/matches",
@@ -23,7 +22,6 @@ module.exports = function(router) {
       },
       rejectUnauthorized: false
     }).then(data => {
-      console.log("api request complete");
       if (!data) {
         const message = "No Footy Data";
         console.error(message);
@@ -31,14 +29,12 @@ module.exports = function(router) {
       }
       // get the matchDay from the API
       let matchday = data.matches[0].season.currentMatchday;
-      //matchday = 5;
       let numberofPredictions = 0;
       let completedPredictions = 0;
       // go grab all Predictions for this matchDay
       console.log("matchday:", matchday);
       Predictions.find({ matchDay: matchday }, function(err, predictions) {
-        //console.log('predictions calc:', predictions)
-        // loop through all predictions
+        // loop through all predictions and matches - nested loops not the best way
         numberofPredictions = predictions.length;
         console.log("found predictions,", numberofPredictions);
         console.log("number of matches", data.matches.length);
@@ -50,19 +46,25 @@ module.exports = function(router) {
                 data.matches[j].awayTeam.name,
                 predictions[i].fixtures
               );
-              predictions[i].fixtures[fixture].winner =
-                data.matches[j].score.winner;
-              if (
-                data.matches[j].score.winner.replace("_TEAM", "") ==
-                predictions[i].fixtures[fixture].prediction.replace("_WIN", "")
-              ) {
-                debugger;
-                predictions[i].fixtures[fixture].result = 1;
+              if (data.matches[j].score.winner !== null) {
+                predictions[i].fixtures[fixture].winner =
+                  data.matches[j].score.winner;
+                if (
+                  data.matches[j].score.winner.replace("_TEAM", "") ==
+                  predictions[i].fixtures[fixture].prediction.replace(
+                    "_WIN",
+                    ""
+                  )
+                ) {
+                  debugger;
+                  predictions[i].fixtures[fixture].result = 1;
+                }
+              } else {
+                break;
               }
             }
           }
           predictions[i].save();
-          //console.log(predictions[i]);
           checkComplete();
         }
       });
@@ -82,7 +84,6 @@ module.exports = function(router) {
         completedPredictions++;
         if (completedPredictions == numberofPredictions) {
           res.send(200);
-          // res.redirect('/updatePoints');
         }
       }
 
@@ -94,19 +95,11 @@ module.exports = function(router) {
       // updatePoints
     });
   });
-  // updatePoints
-  /*
-        this route will go and get all users and loop through them. It will then go get all of the predictions for a given user. Do a sum of each prediction.fixtures result property. Once you have a total. user[i].points = total; user[i].save();
 
-        */
+  //this route will go and get all users and loop through them. It will then go get all of the predictions for a given user. Do a
+  //sum of each prediction.fixtures result property. Once you have a total. user[i].points = total; user[i].save();
+
   router.get("/updatePoints", function(req, res) {
-    /*for (let i = 0; i < users.length; i++) {
-            users[i].find({ user_id : prediction });
-            for (let j = 0; j < Predictions.length; j++) {
-
-            }
-
-        }*/
     let userIds = [];
     let userPoints = {};
     // initialize userIds list and userPoints object
@@ -134,42 +127,35 @@ module.exports = function(router) {
             // aggregating all the points in the result property for each userId
             userPoints[predictions[i].user_id] +=
               predictions[i].fixtures[j].result;
-            //console.log(userPoints);
           }
         }
         users1.forEach(function(user) {
           // update the points prop on each user obj then save
           user.points = userPoints[user._id];
           user.save();
-          console.log("user: " + user._id + " saved");
         });
-        console.log("finished");
         res.send(200);
       });
   });
   // =========================
   // LEADERBOARD PAGE
   // =========================
+  // Sort users by their points and send the data to leaderboard ejs page
   router.get("/leaderboard", isLoggedIn, function(req, res) {
     user
       .find({})
       .sort("-points")
       .exec()
       .then(function(users) {
-        console.log(users);
         res.render("game-pages/leaderboard", { data: users }); // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
       });
   });
-  //     /*
-  //         go get all Users, sort them by points (maybe with a limit of X)
-  //
-  //     */
-
   // =========================
   // PREDICTIONS PAGE
   // =========================
+  // Hit the footy api to get the fixtures for the current matchday and send the
+  // data to the predictions ejs page
   router.get("/predictions", isLoggedIn, function(req, res) {
-    console.log("here");
     requestPromise({
       method: "GET",
       uri: "https://api.football-data.org/v2/competitions/PL/matches",
@@ -186,18 +172,15 @@ module.exports = function(router) {
           return res.status(404).send(message);
         }
         const matchday = data.matches[0].season.currentMatchday;
-        console.log("after set matchday");
         // see if loggedin user already has a predictions
         Predictions.find(
           { matchDay: matchday, user_id: req.user._id },
           function(err, prediction) {
-            console.log(prediction.length, matchday);
             if (!err) {
               if (prediction.length) {
                 res.redirect("/updatePredictions");
               } else {
                 let thisWeeksFixtures = [];
-                console.log("Weeks Fixtures:", thisWeeksFixtures);
                 for (let i = 0; i < data.matches.length; i++) {
                   if (data.matches[i].matchday == matchday) {
                     thisWeeksFixtures.push(data.matches[i]);
@@ -216,6 +199,8 @@ module.exports = function(router) {
       );
   });
 
+  // Hit the api for the fixtures then create a prediction for the user
+  // and save it to the database
   router.post("/predictions", isLoggedIn, function(req, res) {
     requestPromise({
       method: "GET",
@@ -228,11 +213,7 @@ module.exports = function(router) {
     })
       .then(data => {
         if (data) {
-          console.log(req.body);
-          console.log(req.user);
           const matchday = data.matches[0].season.currentMatchday;
-          console.log("matchday:", matchday);
-
           let fixtures = [];
           for (let i = 0; i < 10; i++) {
             fixtures.push({
@@ -249,7 +230,6 @@ module.exports = function(router) {
               fixtures: fixtures
             },
             function(err, prediction) {
-              console.log("prediction:", prediction);
               res.render("game-pages/predictions-posted");
             }
           );
@@ -264,6 +244,8 @@ module.exports = function(router) {
       );
   });
 
+  // Fetch the fixtures from the api and the prediction values input by the user
+  // for them
   router.get("/updatePredictions", isLoggedIn, function(req, res) {
     requestPromise({
       method: "GET",
@@ -303,6 +285,7 @@ module.exports = function(router) {
       );
   });
 
+  // Post the updated fixture predictions
   router.post("/update-predictions", isLoggedIn, function(req, res) {
     requestPromise({
       method: "GET",
@@ -354,6 +337,8 @@ module.exports = function(router) {
   // =========================
   // RESULTS PAGE
   // =========================
+  // Hit the api for the results of previous weeks fixtures and send the data to
+  // the results ejs page
   router.get("/results", function(req, res) {
     requestPromise({
       method: "GET",
@@ -371,7 +356,6 @@ module.exports = function(router) {
           return res.status(404).send(message);
         }
         const matchday = data.matches[0].season.currentMatchday - 1;
-        console.log("matchday:", matchday);
         return requestPromise({
           method: "GET",
           uri: "https://api.football-data.org/v2/competitions/PL/matches",
@@ -386,10 +370,8 @@ module.exports = function(router) {
         }).catch(err => res.status(500).json({ message: "Gone Pete Tong" }));
       })
       .then(data => {
-        console.log(data);
         res.render("game-pages/matchday-results.ejs", { data: data });
       });
-    // loads results.ejs file
   });
 
   router.get("/all-predictions", isLoggedIn, function(req, res) {

@@ -47,15 +47,17 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 require("./app/auth-routes.js")(app, passport); // load the routes and pass in the app and configured passport
 require("./app/game-routes.js")(app);
 
-// cron.schedule("*/10 * * * * *", () => {
-//   console.log("cron running");
-//   app.runMiddleware("/checkPredictions", function(response) {
-//     //console.log("checkPredictions response", response);
-//     app.runMiddleware("/updatePoints", function(response) {
-//       //console.log("updatePoints response", response);
-//     });
-//   });
-// });
+cron.schedule("*/59 * * * *", () => {
+  console.log("cron running");
+  app.runMiddleware("/checkPredictions", { connection: {} }, function(
+    response
+  ) {
+    console.log("checkPredictions response", response);
+    app.runMiddleware("/updatePoints", { connection: {} }, function(response) {
+      console.log("updatePoints response", response);
+    });
+  });
+});
 
 app.listen(port);
 console.log("communicating through port " + port);
