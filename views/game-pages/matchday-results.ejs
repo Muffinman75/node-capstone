@@ -18,6 +18,8 @@
 
         </div>
 
+        <div class="results-container">
+
             <table method="get" action="/matchday-results">
             <input type="hidden" name="matchDay" value="<%=data.matches[0].season.currentMatchday - 1%>">
 
@@ -38,6 +40,8 @@
                 <td class="tableText"><%= data.matches[i].awayTeam.name  %></td>
                 <td class="tableText thin-col"><%= data.matches[i].score.fullTime.awayTeam %></td>
             </tr>
+
+        </div>
 
             <% } %>
 

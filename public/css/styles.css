@@ -176,30 +176,31 @@ fieldset {
   border: none;
 }
 
+.results-container {
+  width: 97%;
+}
+
 table {
-  /* font-size: 18px; */
-  font-weight: 600;
-  /* font-family: arial, sans-serif; */
   background-color: rgba(255, 255, 255, 0.8);
-  width: 90%;
+  width: 95%;
   border-radius: 5px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   border-spacing: 0;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.7);
 }
 
 .tableText {
-  font-size: 24px;
+  /* font-size: 24px; */
 }
 
 td,
 th {
   border: 1px solid #004080;
   text-align: center;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .thin-col {
