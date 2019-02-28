@@ -33,7 +33,7 @@ Results Page
 ![Results Page](https://github.com/Muffinman75/node-capstone/blob/master/app/README-screens/Screenshot_2018-09-22%20EPL%20Game.png)
 
 This is a football(soccer) prediction game where the user will guess who will win the match or whether it is a
-raw and gain a point for a correct guess. The user will signup, login with unique user credentials and should
+draw and gain a point for a correct guess. The user can signup, login with unique user credentials and should
 make predictions for the coming weeks English Premier League fixtures. The user can also update these
 predictions, view the leaderboard with all the other users' ranks and points and can also take a look at the
 previous weeks matchday results.
